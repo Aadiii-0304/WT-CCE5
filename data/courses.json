@@ -1,0 +1,277 @@
+[
+  {
+    "id": "ug-aids",
+    "name": "B.Tech in Artificial Intelligence & Data Science",
+    "degreeLevel": "UG",
+    "degreeType": "Bachelor of Technology",
+    "departmentId": "aids",
+    "departmentName": "Artificial Intelligence & Data Science",
+    "duration": "4 Years (8 Semesters)",
+    "intake": 180,
+    "feesPerYear": "₹1,42,000 / Year",
+    "eligibility": "10+2 / HSC with Physics, Mathematics & Chemistry/CS with min 45% (40% for reserved) + valid MHT-CET / JEE Main score.",
+    "description": "Comprehensive four-year undergraduate curriculum covering mathematical statistics, machine learning algorithms, deep learning neural networks, computer vision, natural language processing, and big data cloud engineering.",
+    "highlights": [
+      "Dedicated NVIDIA GPU acceleration workstations",
+      "Hands-on projects with PyTorch, TensorFlow, and Hugging Face",
+      "Semester-long industrial internship in final year",
+      "Curriculum reviewed with industry advisory board"
+    ],
+    "careerPaths": [
+      "Machine Learning Engineer",
+      "Data Scientist",
+      "Deep Learning Researcher",
+      "Business Intelligence Specialist"
+    ]
+  },
+  {
+    "id": "ug-comp",
+    "name": "B.Tech in Computer Engineering",
+    "degreeLevel": "UG",
+    "degreeType": "Bachelor of Technology",
+    "departmentId": "comp",
+    "departmentName": "Computer Engineering",
+    "duration": "4 Years (8 Semesters)",
+    "intake": 240,
+    "feesPerYear": "₹1,42,000 / Year",
+    "eligibility": "10+2 / HSC with Physics, Mathematics & Chemistry/Technical with min 45% (40% for reserved) + valid MHT-CET / JEE Main.",
+    "description": "Prestigious undergraduate engineering degree focusing on data structures, algorithmic design, systems programming, cloud architecture, cybersecurity, and enterprise full-stack development.",
+    "highlights": [
+      "Accredited by National Board of Accreditation (NBA)",
+      "High-speed private cloud and high-performance computing lab",
+      "Excellent placement record with Tier-1 tech conglomerates",
+      "Active coding club and international hackathon track record"
+    ],
+    "careerPaths": [
+      "Software Development Engineer (SDE)",
+      "Full-Stack Web Architect",
+      "Cloud & DevOps Engineer",
+      "Information Security Analyst"
+    ]
+  },
+  {
+    "id": "ug-it",
+    "name": "B.Tech in Information Technology",
+    "degreeLevel": "UG",
+    "degreeType": "Bachelor of Technology",
+    "departmentId": "it",
+    "departmentName": "Information Technology",
+    "duration": "4 Years (8 Semesters)",
+    "intake": 180,
+    "feesPerYear": "₹1,42,000 / Year",
+    "eligibility": "10+2 / HSC with Physics, Mathematics & Chemistry with min 45% + valid MHT-CET / JEE Main percentile.",
+    "description": "Specialized curriculum designed to master modern distributed web applications, database management systems, cloud infrastructures, mobile application engineering, and enterprise IT security.",
+    "highlights": [
+      "NBA accredited outcome-based engineering education",
+      "Centres of innovation in Mobile Apps and Enterprise Software",
+      "Extensive live client project exposure during senior years",
+      "Continuous corporate mentorship sessions and guest lectures"
+    ],
+    "careerPaths": [
+      "Frontend & Single Page App Developer",
+      "Database Administrator (DBA)",
+      "Mobile Applications Specialist",
+      "IT Infrastructure Consultant"
+    ]
+  },
+  {
+    "id": "ug-mech",
+    "name": "B.Tech in Mechanical Engineering",
+    "degreeLevel": "UG",
+    "degreeType": "Bachelor of Technology",
+    "departmentId": "mech",
+    "departmentName": "Mechanical Engineering",
+    "duration": "4 Years (8 Semesters)",
+    "intake": 180,
+    "feesPerYear": "₹1,42,000 / Year",
+    "eligibility": "10+2 / HSC with Physics, Mathematics & Chemistry/Biology/Biotech with min 45% + valid MHT-CET / JEE Main score.",
+    "description": "Core engineering discipline blending thermodynamics, structural design, mechatronics, finite element analysis, additive manufacturing, and electric mobility technologies.",
+    "highlights": [
+      "Proximity to PCMC/Pune automotive industrial corridors",
+      "Advanced CAD/CAM/CAE laboratories with ANSYS and CATIA",
+      "Renowned student racing teams (BAJA SAE, Formula Student)",
+      "Specializations in Electric Vehicles and Industry 4.0"
+    ],
+    "careerPaths": [
+      "Automotive Systems Engineer",
+      "Product Design & CAE Engineer",
+      "Thermal & Fluid Dynamics Analyst",
+      "Robotics & Smart Manufacturing Specialist"
+    ]
+  },
+  {
+    "id": "ug-civil",
+    "name": "B.Tech in Civil Engineering",
+    "degreeLevel": "UG",
+    "degreeType": "Bachelor of Technology",
+    "departmentId": "civil",
+    "departmentName": "Civil Engineering",
+    "duration": "4 Years (8 Semesters)",
+    "intake": 120,
+    "feesPerYear": "₹1,42,000 / Year",
+    "eligibility": "10+2 / HSC with Physics & Mathematics along with Chemistry/Biology with min 45% + valid MHT-CET / JEE Main.",
+    "description": "Comprehensive program preparing engineers to design, build, and sustain green urban infrastructure, smart highway networks, bridges, high-rise structural systems, and environmental management plants.",
+    "highlights": [
+      "NABL accredited commercial testing laboratories",
+      "Hands-on surveying with Total Stations, DGPS, and Drones",
+      "Building Information Modeling (BIM) specialized modules",
+      "Regular technical field visits to mega infrastructure sites"
+    ],
+    "careerPaths": [
+      "Structural Consulting Engineer",
+      "Urban Infrastructure Planner",
+      "Geotechnical Analyst",
+      "BIM Coordinator & Site Project Manager"
+    ]
+  },
+  {
+    "id": "ug-entc",
+    "name": "B.Tech in Electronics & Telecommunication",
+    "degreeLevel": "UG",
+    "degreeType": "Bachelor of Technology",
+    "departmentId": "entc",
+    "departmentName": "Electronics & Telecommunication",
+    "duration": "4 Years (8 Semesters)",
+    "intake": 180,
+    "feesPerYear": "₹1,42,000 / Year",
+    "eligibility": "10+2 / HSC with Physics, Mathematics & Chemistry with min 45% + valid MHT-CET / JEE Main percentile.",
+    "description": "Forward-looking engineering degree covering semiconductor physics, VLSI chip design, embedded microcontrollers, 5G wireless networks, antenna systems, and Internet of Things.",
+    "highlights": [
+      "Cadence and Synopsys EDA VLSI suites available for research",
+      "ARM University authorized embedded systems testing facility",
+      "High core placements in semiconductor & communications firms",
+      "Hands-on prototyping with modern FPGA and DSP boards"
+    ],
+    "careerPaths": [
+      "VLSI Design & Physical Design Engineer",
+      "Embedded Software & Firmware Developer",
+      "RF & Wireless Telecommunications Engineer",
+      "IoT Product Developer"
+    ]
+  },
+  {
+    "id": "pg-comp",
+    "name": "M.Tech in Computer Engineering",
+    "degreeLevel": "PG",
+    "degreeType": "Master of Technology",
+    "departmentId": "comp",
+    "departmentName": "Computer Engineering",
+    "duration": "2 Years (4 Semesters)",
+    "intake": 24,
+    "feesPerYear": "₹98,000 / Year",
+    "eligibility": "B.E. / B.Tech in Computer / IT or equivalent with min 50% marks (45% for reserved) + valid GATE score in CS/IT.",
+    "description": "Postgraduate research and advanced software engineering program emphasizing high performance computing, advanced algorithms, cryptographic protocols, and intelligent systems.",
+    "highlights": [
+      "Dedicated dissertation guidance by recognized Ph.D. guides",
+      "Access to high performance private cloud compute clusters",
+      "Option for joint research publications with national conferences",
+      "Teaching assistantship stipends available for GATE scholars"
+    ],
+    "careerPaths": [
+      "Lead Systems Software Architect",
+      "Research Scientist (R&D)",
+      "Cybersecurity Principal Consultant",
+      "Academician / Assistant Professor"
+    ]
+  },
+  {
+    "id": "pg-entc",
+    "name": "M.Tech in VLSI & Embedded Systems",
+    "degreeLevel": "PG",
+    "degreeType": "Master of Technology",
+    "departmentId": "entc",
+    "departmentName": "Electronics & Telecommunication",
+    "duration": "2 Years (4 Semesters)",
+    "intake": 18,
+    "feesPerYear": "₹98,000 / Year",
+    "eligibility": "B.E. / B.Tech in E&TC / Electronics or equivalent with min 50% (45% for reserved) + valid GATE score in EC.",
+    "description": "Advanced specialization in modern deep sub-micron ASIC design, system-on-chip (SoC) architectures, synthesis, real-time operating systems (RTOS), and hardware-software co-design.",
+    "highlights": [
+      "Full industrial standard EDA tool flows (Cadence, Mentor)",
+      "Focus on low-power semiconductor VLSI circuit design",
+      "Industry-sponsored thesis projects with semiconductor MNCs",
+      "Comprehensive training in SystemVerilog and UVM methodology"
+    ],
+    "careerPaths": [
+      "ASIC / SoC Verification Engineer",
+      "Analog / Digital IC Design Engineer",
+      "Firmware Architect",
+      "Semiconductor Product Engineer"
+    ]
+  },
+  {
+    "id": "pg-mech",
+    "name": "M.Tech in Mechanical Design Engineering",
+    "degreeLevel": "PG",
+    "degreeType": "Master of Technology",
+    "departmentId": "mech",
+    "departmentName": "Mechanical Engineering",
+    "duration": "2 Years (4 Semesters)",
+    "intake": 18,
+    "feesPerYear": "₹98,000 / Year",
+    "eligibility": "B.E. / B.Tech in Mechanical / Production / Automobile with min 50% + valid GATE score in ME.",
+    "description": "Advanced master's degree focusing on advanced stress analysis, fatigue and fracture mechanics, tribology, optimization techniques, and multi-body dynamic simulations.",
+    "highlights": [
+      "Advanced computational mechanics and FEA simulation labs",
+      "Direct live research projects with Pune automotive industries",
+      "Vibration analysis and modal testing instrumentation",
+      "Faculty with extensive research patents and publications"
+    ],
+    "careerPaths": [
+      "Senior Structural / Mechanical CAE Specialist",
+      "NVH (Noise, Vibration & Harshness) Engineer",
+      "Automotive Design Lead",
+      "Product Development Scientist"
+    ]
+  },
+  {
+    "id": "phd-comp",
+    "name": "Ph.D. in Computer Engineering",
+    "degreeLevel": "PhD",
+    "degreeType": "Doctor of Philosophy",
+    "departmentId": "comp",
+    "departmentName": "Computer Engineering",
+    "duration": "3 to 5 Years",
+    "intake": 10,
+    "feesPerYear": "₹65,000 / Year",
+    "eligibility": "Master's Degree (M.E. / M.Tech in CS/IT) with min 55% + qualified SPPU PET / UGC-NET / GATE examination.",
+    "description": "Doctoral research program approved by Savitribai Phule Pune University (SPPU), fostering high-impact theoretical and applied research in AI, distributed computing, cyber physical security, and algorithmic paradigms.",
+    "highlights": [
+      "Approved SPPU University Research Centre since 2008",
+      "Guidance from senior professors with high Scopus / Web of Science h-indices",
+      "Financial assistance through research grants and sponsored consultancies",
+      "Access to extensive IEEE, ACM, Springer, and ScienceDirect digital libraries"
+    ],
+    "careerPaths": [
+      "University Professor / Principal Researcher",
+      "Chief Technology Officer (CTO)",
+      "Industrial R&D Lab Director",
+      "Policy & Scientific Advisor"
+    ]
+  },
+  {
+    "id": "phd-mech",
+    "name": "Ph.D. in Mechanical Engineering",
+    "degreeLevel": "PhD",
+    "degreeType": "Doctor of Philosophy",
+    "departmentId": "mech",
+    "departmentName": "Mechanical Engineering",
+    "duration": "3 to 5 Years",
+    "intake": 8,
+    "feesPerYear": "₹65,000 / Year",
+    "eligibility": "Master's Degree (M.E. / M.Tech in Mechanical disciplines) with min 55% + qualified SPPU PET / GATE examination.",
+    "description": "Advanced doctoral research centre offering avenues in thermal sciences, computational fluid dynamics, composite materials, sustainable manufacturing, and micro-electromechanical systems.",
+    "highlights": [
+      "Recognized SPPU Research Centre with high-end testing setups",
+      "Collaboration with ARDE, DRDO, and ARAI Pune research laboratories",
+      "Patent drafting and commercialization mentorship cell",
+      "Support for presenting papers at premier international conferences abroad"
+    ],
+    "careerPaths": [
+      "Senior Research Scientist in Aerospace & Defense",
+      "Executive Technical Consultant",
+      "Professor / Academic Dean",
+      "R&D Innovation Strategist"
+    ]
+  }
+]

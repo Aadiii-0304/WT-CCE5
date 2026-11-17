@@ -1,0 +1,404 @@
+[
+  {
+    "id": "aids",
+    "name": "Artificial Intelligence & Data Science",
+    "shortName": "AI & DS",
+    "code": "AIDS",
+    "establishedYear": 2020,
+    "intake": 180,
+    "image": "https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=1000&q=80",
+    "icon": "brain",
+    "shortDesc": "Pioneering state-of-the-art education in machine learning, deep neural architectures, big data analytics, and autonomous cognitive systems.",
+    "longDesc": "The Department of Artificial Intelligence & Data Science at D. Y. Patil College of Engineering, Akurdi Pune, was established to address the exponential demand for skilled computing engineers proficient in cutting-edge cognitive algorithms and large-scale data engineering. The department offers comprehensive industry-aligned curriculum supported by NVIDIA GPU computing labs, cloud environments, and industry mentorship programs.",
+    "vision": "To produce globally competent professionals and researchers in Artificial Intelligence and Data Science with ethical values and social responsibility.",
+    "mission": [
+      "Deliver rigorous foundational and advanced education in cognitive intelligence and data technologies.",
+      "Facilitate cutting-edge industry collaborations, research projects, and innovation incubators.",
+      "Inculcate lifelong learning, ethical engineering practices, and multidisciplinary problem-solving abilities."
+    ],
+    "hod": {
+      "name": "Dr. Vinayak K. Kottawar",
+      "qualification": "Ph.D. (Computer Science & Engg.), M.E.",
+      "designation": "Professor & Head of Department",
+      "email": "hod_aids@dypcoeakurdi.ac.in",
+      "photo": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80",
+      "message": "Welcome to AI & DS. Our curriculum is tailored to transform young minds into innovators capable of solving high-impact real-world problems using intelligent computational frameworks."
+    },
+    "coursesOffered": [
+      "B.Tech in Artificial Intelligence & Data Science (4 Years)",
+      "Honors in Deep Learning & Computer Vision",
+      "Minor in Financial Data Analytics"
+    ],
+    "laboratories": [
+      {
+        "name": "Deep Learning & Neural Computing Lab",
+        "equipment": "NVIDIA RTX 4090 Workstations, Tensor Processing Units (TPUs), CUDA Toolkit",
+        "description": "Dedicated setup for training complex computer vision, natural language processing, and generative AI models."
+      },
+      {
+        "name": "Big Data Engineering & Cloud Lab",
+        "equipment": "Distributed Hadoop Cluster, Apache Spark, AWS Cloud Sandbox",
+        "description": "Focused on large-scale distributed streaming, data pipelines, ETL architectures, and warehousing."
+      },
+      {
+        "name": "Cognitive Robotics & IoT Lab",
+        "equipment": "Raspberry Pi 5 clusters, Jetson Nano boards, Edge TPU coprocessors",
+        "description": "Enables edge inference, embedded robotics, computer vision, and real-time sensory data processing."
+      }
+    ],
+    "keyFeatures": [
+      "Centre of Excellence in Generative AI and Applied Machine Learning",
+      "Active MOUs with leading technology leaders including Intel, AWS, and NVIDIA Deep Learning Institute",
+      "100% placement track record with Tier-1 product and consulting enterprises",
+      "Hackathons, Kaggle competitive coding teams, and faculty-guided research publications"
+    ],
+    "studentAchievements": [
+      "1st Prize in National Smart India Hackathon (Hardware & AI edition) 2025",
+      "Published 18 IEEE research papers authored jointly by undergraduate students and faculty",
+      "Student teams selected for Google Summer of Code (GSoC) and ACM ICPC Regionals"
+    ],
+    "careerOpportunities": [
+      "Machine Learning Engineer",
+      "Data Scientist & Analytics Consultant",
+      "Natural Language Processing Engineer",
+      "Computer Vision Specialist",
+      "Big Data Architect"
+    ]
+  },
+  {
+    "id": "comp",
+    "name": "Computer Engineering",
+    "shortName": "Computer Engg.",
+    "code": "COMP",
+    "establishedYear": 1984,
+    "intake": 240,
+    "image": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1000&q=80",
+    "icon": "laptop-code",
+    "shortDesc": "One of the flagship departments offering premier computer science education, full-stack software development, cybersecurity, and algorithms.",
+    "longDesc": "The Department of Computer Engineering is the cornerstone of D. Y. Patil College of Engineering, renowned for academic excellence, state-of-the-art computational infrastructure, and a stellar placement history spanning four decades. Accredited by the National Board of Accreditation (NBA), the department blends theoretical foundations with hands-on enterprise-level software engineering.",
+    "vision": "To achieve excellence in Computer Science and Engineering education, nurturing socially committed innovators and technocrats.",
+    "mission": [
+      "Provide high-quality education in software engineering, distributed computing, and emerging computer systems.",
+      "Promote faculty and student research leading to publications, patents, and entrepreneurial ventures.",
+      "Cultivate strong industry-academia partnerships to bridge contemporary technological skill gaps."
+    ],
+    "hod": {
+      "name": "Dr. Madhuri A. Potey",
+      "qualification": "Ph.D. (Computer Engg.), M.Tech",
+      "designation": "Professor & Head of Department",
+      "email": "hod_comp@dypcoeakurdi.ac.in",
+      "photo": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80",
+      "message": "We empower students with strong fundamentals in algorithms, architecture, and modern full-stack development to excel in global engineering arenas."
+    },
+    "coursesOffered": [
+      "B.Tech in Computer Engineering (4 Years)",
+      "M.Tech in Computer Engineering (2 Years)",
+      "Ph.D. in Computer Engineering (Research Programme)",
+      "Honors in Cyber Security & Blockchain Technology"
+    ],
+    "laboratories": [
+      {
+        "name": "Advanced Software Development Lab",
+        "equipment": "Core i7 Systems, Ubuntu 24.04 LTS, Docker, Kubernetes, CI/CD toolchains",
+        "description": "Environment for enterprise software development, distributed systems, and collaborative Git projects."
+      },
+      {
+        "name": "Cybersecurity & Forensic Investigation Lab",
+        "equipment": "Kali Linux Virtualized Testbed, Wireshark, Snort IDS, Hardware Cryptographic Modules",
+        "description": "Practical network packet inspection, penetration testing, ethical hacking, and digital forensics."
+      },
+      {
+        "name": "Cloud Computing & High-Performance Lab",
+        "equipment": "Private OpenStack Cloud, Gigabit Fiber Network, Blade Servers",
+        "description": "Research platform for microservices, virtualization, serverless architectures, and distributed algorithms."
+      }
+    ],
+    "keyFeatures": [
+      "NBA Accredited program with rigorous outcome-based education pedagogy",
+      "Industry-sponsored laboratories by Capgemini, IBM, and Red Hat",
+      "Active student chapters: CSI (Computer Society of India), ACM, and IEEE Student Branch",
+      "Strong coding culture with year-round competitive programming contests"
+    ],
+    "studentAchievements": [
+      "Highest placement package of 43 LPA secured by student in Tier-1 product giant",
+      "Winners at International ACM Hackathons and Smart India Hackathon consecutive years",
+      "Over 12 patents filed by students and faculty in software architectures"
+    ],
+    "careerOpportunities": [
+      "Full-Stack Software Development Engineer",
+      "Cloud Solutions Architect",
+      "Cybersecurity Analyst & Ethical Hacker",
+      "DevOps & Reliability Engineer",
+      "Systems Software Programmer"
+    ]
+  },
+  {
+    "id": "it",
+    "name": "Information Technology",
+    "shortName": "Information Tech.",
+    "code": "IT",
+    "establishedYear": 1999,
+    "intake": 180,
+    "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1000&q=80",
+    "icon": "network",
+    "shortDesc": "Empowering future technologists in enterprise web technologies, cloud infrastructure, mobile development, and data network engineering.",
+    "longDesc": "The Department of Information Technology at DYPCOE Pune is recognized for its dynamic curriculum, vibrant coding atmosphere, and strong ties with global IT conglomerates. The department equips students with skills across modern web architectures, mobile computing, enterprise databases, and business intelligence.",
+    "vision": "To emerge as a premier centre of education and research in Information Technology fostering sustainable tech solutions.",
+    "mission": [
+      "Deliver rigorous education in modern information systems, security, and networked applications.",
+      "Encourage innovation through project-based learning and interdisciplinary research projects.",
+      "Instill moral values, teamwork, and professional leadership among budding IT engineers."
+    ],
+    "hod": {
+      "name": "Dr. Preeti Patil",
+      "qualification": "Ph.D. (Information Technology), M.E.",
+      "designation": "Professor & Head of Department",
+      "email": "hod_it@dypcoeakurdi.ac.in",
+      "photo": "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&w=400&q=80",
+      "message": "Information Technology is the backbone of the modern digital economy. We prepare our students to engineer resilient and scalable digital systems."
+    },
+    "coursesOffered": [
+      "B.Tech in Information Technology (4 Years)",
+      "Honors in Cloud Infrastructure & DevOps",
+      "Minor in Mobile App Architecture & Flutter"
+    ],
+    "laboratories": [
+      {
+        "name": "Web Technologies & Full-Stack Lab",
+        "equipment": "Node.js, Express, React, PostgreSQL, High-speed LAN, REST/GraphQL toolkits",
+        "description": "Hands-on engineering of Single Page Applications, progressive web apps, and modern REST APIs."
+      },
+      {
+        "name": "Database Management & BI Lab",
+        "equipment": "Oracle 19c Enterprise, MongoDB, PowerBI, Tableau Server",
+        "description": "Relational query optimization, NoSQL schema design, data modeling, and business dashboards."
+      },
+      {
+        "name": "Mobile Computing Lab",
+        "equipment": "Android Studio Workstations, Apple Mac Mini M2 testbeds, iOS simulator suites",
+        "description": "Cross-platform mobile application development, UX design, and sensor integration."
+      }
+    ],
+    "keyFeatures": [
+      "NBA Accredited program ensuring superior education and infrastructure standards",
+      "Dedicated Centre of Innovation in Mobile Application and Cloud Engineering",
+      "Industry collaborations with Virtusa, Zensar Technologies, and Cognizant",
+      "Extensive mentoring for competitive examinations (GATE, GRE, CAT)"
+    ],
+    "studentAchievements": [
+      "Winners of Pune University Inter-College Coding Trophy 2025",
+      "Over 30 student-built open-source applications deployed with active global users",
+      "Consistently 95%+ campus placements in leading software multinationals"
+    ],
+    "careerOpportunities": [
+      "Frontend / SPA Engineer",
+      "Enterprise Backend Engineer",
+      "Mobile Applications Developer",
+      "Database Administrator",
+      "Information Security Consultant"
+    ]
+  },
+  {
+    "id": "mech",
+    "name": "Mechanical Engineering",
+    "shortName": "Mechanical Engg.",
+    "code": "MECH",
+    "establishedYear": 1984,
+    "intake": 180,
+    "image": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1000&q=80",
+    "icon": "cogs",
+    "shortDesc": "Fusing core mechanical design principles with Industry 4.0, mechatronics, electric vehicles, and smart manufacturing technologies.",
+    "longDesc": "Mechanical Engineering at DYPCOE is one of the oldest and most respected engineering branches in the Pune industrial belt. Situated strategically in Akurdi amidst the automobile hub of PCMC, the department maintains deep industrial synergies with Tata Motors, Bajaj Auto, Bharat Forge, and Thermax.",
+    "vision": "To produce benchmark mechanical engineers capable of sustainable design, smart manufacturing, and industrial leadership.",
+    "mission": [
+      "Provide solid fundamentals in thermo-fluids, mechanical design, and advanced manufacturing.",
+      "Integrate Industry 4.0, CAD/CAM/CAE automation, and Electric Mobility into traditional disciplines.",
+      "Promote ethical engineering practices and environmental consciousness in design."
+    ],
+    "hod": {
+      "name": "Dr. Ashok T. Pise",
+      "qualification": "Ph.D. (Mechanical Engg.), M.E.",
+      "designation": "Professor & Head of Department",
+      "email": "hod_mech@dypcoeakurdi.ac.in",
+      "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80",
+      "message": "Our proximity to the Pune automotive and manufacturing hub gives our mechanical engineering students unmatched hands-on industrial exposure."
+    },
+    "coursesOffered": [
+      "B.Tech in Mechanical Engineering (4 Years)",
+      "M.Tech in Mechanical Design Engineering (2 Years)",
+      "Ph.D. in Mechanical Engineering",
+      "Honors in Electric Vehicles & Battery Technology",
+      "Honors in Robotics & Mechatronics"
+    ],
+    "laboratories": [
+      {
+        "name": "CAD / CAM / CAE Centre of Excellence",
+        "equipment": "ANSYS 2024, CATIA V5, SolidWorks, PTC Creo, 3D Rapid Prototyping Printers",
+        "description": "Advanced finite element analysis (FEA), computational fluid dynamics (CFD), and parametric 3D modelling."
+      },
+      {
+        "name": "Mechatronics, Robotics & Automation Lab",
+        "equipment": "6-Axis Industrial Robotic Arm, PLC & SCADA Trainer, Electro-pneumatic kits",
+        "description": "Programmable automation, sensor integration, and industrial robotics for smart manufacturing."
+      },
+      {
+        "name": "Internal Combustion Engines & EV Testbed",
+        "equipment": "Multi-cylinder Computerized IC Engine Test Rig, BLDC Motor Dyno, Battery Pack Analyzer",
+        "description": "Evaluation of engine emissions, thermodynamic efficiency, and electric powertrain performance."
+      }
+    ],
+    "keyFeatures": [
+      "BAJA SAE and SUPRA student racing teams with multiple national podium finishes",
+      "Direct technical training partnerships with Tata Technologies & Bosch",
+      "Well-equipped workshops with CNC Turning and Milling machining centres",
+      "Strong alumni network holding senior engineering positions across global OEMs"
+    ],
+    "studentAchievements": [
+      "Team 'Predators Racing' won 1st in Endurance and 2nd Overall at SAE BAJA India",
+      "3 Patents granted on regenerative braking and agricultural mechanization",
+      "100+ students certified in advanced CATIA and ANSYS simulations annually"
+    ],
+    "careerOpportunities": [
+      "Automotive Design Engineer",
+      "EV Powertrain & Battery Systems Engineer",
+      "CAE / FEA Simulation Analyst",
+      "Robotics & Automation Specialist",
+      "Production & Supply Chain Manager"
+    ]
+  },
+  {
+    "id": "civil",
+    "name": "Civil Engineering",
+    "shortName": "Civil Engg.",
+    "code": "CIVIL",
+    "establishedYear": 1986,
+    "intake": 120,
+    "image": "https://images.unsplash.com/photo-1541888946425-d0fbb186c5f7?auto=format&fit=crop&w=1000&q=80",
+    "icon": "building",
+    "shortDesc": "Building smart cities, sustainable infrastructure, structural engineering, environmental conservation, and BIM modeling.",
+    "longDesc": "The Department of Civil Engineering at DYPCOE has contributed extensively to the nation's infrastructural development. With advanced testing laboratories recognized for government and commercial consultancy, the department trains students in structural analysis, geotechnical engineering, sustainable materials, and Building Information Modeling (BIM).",
+    "vision": "To create civil engineering leaders committed to resilient infrastructure, environmental sustainability, and societal well-being.",
+    "mission": [
+      "Deliver rigorous technical knowledge in structural, environmental, and transportation engineering.",
+      "Facilitate research and consultancy services addressing modern infrastructure challenges.",
+      "Nurture leadership and project management skills adhering to safety and environmental ethics."
+    ],
+    "hod": {
+      "name": "Dr. Sanjay M. Shiyekar",
+      "qualification": "Ph.D. (Structural Engg. - IIT Bombay), M.E.",
+      "designation": "Professor & Head of Department",
+      "email": "hod_civil@dypcoeakurdi.ac.in",
+      "photo": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80",
+      "message": "Civil engineering shapes civilizations. We prepare our engineers to create green, earthquake-resistant, and smart urban infrastructure."
+    },
+    "coursesOffered": [
+      "B.Tech in Civil Engineering (4 Years)",
+      "M.Tech in Structural Engineering (2 Years)",
+      "Honors in Smart City Infrastructure & GIS",
+      "Minor in Sustainable Construction Technology"
+    ],
+    "laboratories": [
+      {
+        "name": "Concrete Technology & Strength of Materials Lab",
+        "equipment": "200-Tonne Computerized UTM, Compression Testing Machine, Rebound Hammer",
+        "description": "Standardized non-destructive and destructive testing of high-strength concrete and structural steel."
+      },
+      {
+        "name": "Geotechnical & Soil Mechanics Lab",
+        "equipment": "Triaxial Shear Apparatus, Direct Shear Box, Standard Penetration Test Apparatus",
+        "description": "Assessment of soil shear strength, permeability, bearing capacity, and foundation settlement."
+      },
+      {
+        "name": "Surveying, Remote Sensing & GIS Lab",
+        "equipment": "Electronic Total Stations, DGPS receivers, ArcGIS Pro, Drone Photogrammetry Suite",
+        "description": "Topographic surveying, spatial data analysis, digital elevation modeling, and town planning."
+      }
+    ],
+    "keyFeatures": [
+      "NABL-accredited commercial testing and material consultancy facility",
+      "Active student chapter of American Concrete Institute (ACI) and Indian Concrete Institute (ICI)",
+      "Regular site visits to major infrastructure marvels including metro rails, expressways, and dams",
+      "High selection rate of graduates in UPSC Engineering Services, MPSC, and PSU exams"
+    ],
+    "studentAchievements": [
+      "1st Prize in ACI National Concrete Cube Testing Competition 2025",
+      "Consultancy revenue exceeding 50 Lakhs generated through state infrastructure auditing",
+      "Best Student Chapter Award conferred by Indian Concrete Institute (Western Region)"
+    ],
+    "careerOpportunities": [
+      "Structural Analysis & Design Engineer",
+      "BIM Coordinator & Modeler",
+      "Geotechnical Engineer",
+      "Transportation & Highway Planner",
+      "Urban Infrastructure Project Manager"
+    ]
+  },
+  {
+    "id": "entc",
+    "name": "Electronics & Telecommunication",
+    "shortName": "E & TC Engg.",
+    "code": "ENTC",
+    "establishedYear": 1984,
+    "intake": 180,
+    "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=80",
+    "icon": "signal",
+    "shortDesc": "Spearheading breakthroughs in 5G/6G wireless communication, VLSI microelectronics, embedded systems, and IoT solutions.",
+    "longDesc": "The Department of Electronics & Telecommunication Engineering has an illustrious history of cultivating hardware designers, telecommunication specialists, and semiconductor engineers. With dedicated research laboratories in VLSI, embedded microcontrollers, and RF communications, the department provides end-to-end silicon-to-software training.",
+    "vision": "To be a leading department generating globally skilled engineers in electronics, communications, and semiconductor systems.",
+    "mission": [
+      "Provide high-standard education across analog, digital, VLSI, and communication systems.",
+      "Establish advanced research hubs catering to semiconductor, wireless, and IoT applications.",
+      "Foster entrepreneurial mindsets and ethical technological practices for societal upliftment."
+    ],
+    "hod": {
+      "name": "Dr. Dnyandeo G. Bhalke",
+      "qualification": "Ph.D. (Electronics & Telecommunication), M.E.",
+      "designation": "Professor & Head of Department",
+      "email": "hod_entc@dypcoeakurdi.ac.in",
+      "photo": "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=400&q=80",
+      "message": "From smart smartphones to autonomous space satellites, E&TC engineers engineer the connected world. Step into the realm of microchips and telecommunications."
+    },
+    "coursesOffered": [
+      "B.Tech in Electronics & Telecommunication (4 Years)",
+      "M.Tech in VLSI & Embedded Systems (2 Years)",
+      "Ph.D. in Electronics Engineering",
+      "Honors in 5G Communications & RF Design",
+      "Honors in Embedded Automotive Systems"
+    ],
+    "laboratories": [
+      {
+        "name": "VLSI Design & Semiconductor Lab",
+        "equipment": "Cadence EDA Suite, Synopsys Design Compiler, Xilinx Vivado, FPGA Evaluation Boards",
+        "description": "Full-custom ASIC layout, RTL synthesis, timing closure, and FPGA digital hardware verification."
+      },
+      {
+        "name": "Embedded Systems & IoT Lab",
+        "equipment": "ARM Cortex M4 development boards, ESP32 modules, Zigbee & LoRaWAN transceivers",
+        "description": "Real-time operating systems (RTOS), firmware development, and connected sensory smart devices."
+      },
+      {
+        "name": "RF, Microwave & Optical Fiber Lab",
+        "equipment": "Vector Network Analyzers (VNA), Spectrum Analyzers up to 6 GHz, Optical Fiber splicing kits",
+        "description": "Microwave antenna radiation profiling, electromagnetic simulation, and high-speed optical links."
+      }
+    ],
+    "keyFeatures": [
+      "Texas Instruments and ARM University Program authorized laboratory",
+      "Active student chapters of IETE (Institution of Electronics and Telecommunication Engineers) and IEEE Communications Society",
+      "Core semiconductor company placements including Qualcomm, Texas Instruments, Intel, and NXP",
+      "State-of-the-art PCB prototyping and precision soldering facilities"
+    ],
+    "studentAchievements": [
+      "National champions at Texas Instruments India Innovation Design Contest",
+      "Multiple research papers presented at IEEE International Conference on VLSI Design",
+      "Alumni startup received 2.5 Crore seed funding for an indigenous IoT smart metering product"
+    ],
+    "careerOpportunities": [
+      "VLSI Design & Physical Verification Engineer",
+      "Embedded Systems & Firmware Developer",
+      "5G / RF Network Optimization Engineer",
+      "IoT Solutions Architect",
+      "Hardware Validation & Test Engineer"
+    ]
+  }
+]
