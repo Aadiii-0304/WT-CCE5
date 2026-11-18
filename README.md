@@ -120,20 +120,20 @@ Traditional college websites are commonly built as static **Multi-Page Applicati
 | **Client Persistence** | **Web Storage API (`localStorage`)** | Persisting submitted student enquiries across page refreshes |
 | **Vector Graphics** | **SVG** | Custom scalable DYPCOE Akurdi college crest (`assets/icons/college-logo.svg`) |
 
-### Visual Design System & Color Palette
+### Visual Design System & Color Palette (DYPCOE Maroon & Gold Prestige Theme)
 
 | Token | Hex Code | Usage |
 | :--- | :--- | :--- |
-| `--primary-navy` | `#102A43` | Primary headings, institutional accents, dark cards |
-| `--primary-navy-dark` | `#0B1D3A` | Top utility bar, hero overlays, footer background |
-| `--secondary-blue` | `#2563EB` | Interactive buttons, active nav indicators, links, badges |
-| `--accent-gold` | `#F59E0B` | Call-to-action highlights, key metrics, achievement icons |
-| `--bg-main` | `#FFFFFF` | Main content canvas and elevated card surfaces |
-| `--bg-light` | `#F3F6FA` | Alternating section backgrounds, input pills, metadata blocks |
-| `--text-primary` | `#1E293B` | High-contrast body headings and primary text |
-| `--text-muted` | `#64748B` | Captions, dates, secondary labels |
-| `--color-success` | `#10B981` | Valid form borders, success toasts, checklist icons |
-| `--color-danger` | `#EF4444` | Urgent notice banners, validation error alerts |
+| `--primary-brand` | `#6B0F24` | Deep DYP Maroon — Top utility bar, primary buttons, active indicators, CTA banner |
+| `--primary-dark` | `#4A0A19` | Rich Burgundy — Deep footer canvas, page banners, overlays |
+| `--primary-accent` | `#8A1530` | Vibrant Maroon — Links, card accents, borders |
+| `--accent-gold` | `#DDA034` | Warm Prestige Gold — Hero highlight, Admissions Open CTAs, metric accents |
+| `--bg-main` | `#FFFFFF` | Pure White — Main content canvas, floating feature bar, card surfaces |
+| `--bg-light` | `#F7F6F2` | Warm Ivory — Alternating editorial sections, metadata blocks |
+| `--text-primary` | `#1E2421` | High-contrast charcoal headings (`Playfair Display`) and UI text (`Plus Jakarta Sans`) |
+| `--text-muted` | `#6B7280` | Captions, dates, secondary labels |
+| `--color-success` | `#15803D` | Valid form states, success toast notifications |
+| `--color-danger` | `#DC2626` | Urgent notice alerts, form validation error feedback |
 
 ### Responsive Breakpoints
 
