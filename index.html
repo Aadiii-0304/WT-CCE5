@@ -7,10 +7,10 @@
   <meta name="author" content="D. Y. Patil College of Engineering Student" />
   <title>D. Y. Patil College of Engineering, Akurdi, Pune | Smart College Portal</title>
 
-  <!-- Google Fonts: Poppins (Clean Modern Academic Typography) -->
+  <!-- Google Fonts: Playfair Display (Prestige Serif) + Plus Jakarta Sans (Clean Modern UI) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="css/style.css" />
@@ -20,62 +20,64 @@
 </head>
 <body>
 
-  <!-- Top Utility Bar -->
-  <aside class="top-bar" aria-label="College Accreditations and Quick Contact">
-    <div class="container">
-      <div class="top-bar-accreditations">
-        <span class="top-bar-item">
-          <strong>DTE Code:</strong> 6272
-        </span>
-        <span class="top-bar-item">
-          <strong>Affiliation:</strong> Savitribai Phule Pune University (SPPU)
-        </span>
-        <span class="top-bar-badge">
-          NAAC 'A+' (3.29 CGPA)
-        </span>
-        <span class="top-bar-badge">
-          NBA Accredited
+  <!-- Top Utility Bar (Reference-Matched Deep Maroon Bar + Flush Gold Admissions Button) -->
+  <aside class="top-bar" aria-label="College Contact and Quick Links">
+    <div class="container top-bar-inner">
+      <div class="top-bar-left">
+        <a href="tel:+912027653058" class="top-bar-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span>+91 (020) 27653058</span>
+        </a>
+        <a href="mailto:admissions@dypcoeakurdi.ac.in" class="top-bar-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <span>admissions@dypcoeakurdi.ac.in</span>
+        </a>
+        <span class="top-bar-item top-bar-address">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Sector 29, Nigdi Pradhikaran, Akurdi, Pune</span>
         </span>
       </div>
 
-      <div class="top-bar-contact">
-        <a href="tel:+912027653058">📞 +91 (020) 27653058</a>
-        <a href="mailto:admissions@dypcoeakurdi.ac.in">✉️ admissions@dypcoeakurdi.ac.in</a>
+      <div class="top-bar-right">
+        <span class="top-bar-link-static">DTE: 6272</span>
+        <a href="/notices" data-link class="top-bar-link">Notices</a>
+        <a href="/faculty" data-link class="top-bar-link">Faculty</a>
+        <button onclick="window.app.showVivaGuide()" class="top-bar-link top-bar-viva-btn">Viva Guide</button>
+        <a href="/contact" data-link class="top-bar-cta">ADMISSIONS OPEN</a>
       </div>
     </div>
   </aside>
 
-  <!-- Main Navigation Header (Sticky) -->
+  <!-- Main Navigation Header (Sticky Clean White Bar with Serif Brand & Uppercase Links) -->
   <header class="site-header" id="site-header">
     <div class="container">
       <div class="header-inner">
         <!-- Brand / College Logo -->
-        <a href="/" data-link class="brand" title="D. Y. Patil College of Engineering, Akurdi, Pune">
+        <a href="/" data-link class="brand" title="Dr. D. Y. Patil College of Engineering, Akurdi, Pune">
           <img src="assets/icons/college-logo.svg" alt="DYPCOE Pune Logo" class="brand-logo" />
           <div class="brand-text">
-            <span class="brand-name">D. Y. Patil College of Engineering</span>
-            <span class="brand-subtext">Akurdi, Pune • Established 1984</span>
-            <span class="brand-affiliation">Approved by AICTE | Affiliated to SPPU</span>
+            <span class="brand-name">D. Y. PATIL</span>
+            <span class="brand-subtext">COLLEGE OF ENGINEERING, AKURDI</span>
           </div>
         </a>
 
         <!-- Desktop Navigation Menu -->
         <nav class="navbar" aria-label="Main Navigation">
           <ul class="navbar-nav">
-            <li><a href="/" data-link class="nav-link active">Home</a></li>
-            <li><a href="/about" data-link class="nav-link">About</a></li>
-            <li><a href="/departments" data-link class="nav-link">Departments</a></li>
-            <li><a href="/courses" data-link class="nav-link">Courses</a></li>
-            <li><a href="/faculty" data-link class="nav-link">Faculty</a></li>
-            <li><a href="/notices" data-link class="nav-link">Notices</a></li>
-            <li><a href="/contact" data-link class="nav-link">Contact</a></li>
+            <li><a href="/" data-link class="nav-link active">HOME</a></li>
+            <li><a href="/about" data-link class="nav-link">ABOUT US</a></li>
+            <li><a href="/departments" data-link class="nav-link">DEPARTMENTS</a></li>
+            <li><a href="/courses" data-link class="nav-link">COURSES</a></li>
+            <li><a href="/faculty" data-link class="nav-link">FACULTY</a></li>
+            <li><a href="/notices" data-link class="nav-link">NOTICES</a></li>
+            <li><a href="/contact" data-link class="nav-link">CONTACT US</a></li>
           </ul>
         </nav>
 
-        <!-- Header Actions / CTA Button -->
+        <!-- Header Right Search Icon & Mobile Hamburger -->
         <div class="header-actions">
-          <a href="/contact" data-link class="btn btn-primary btn-sm header-cta">
-            Apply / Enquire
+          <a href="/courses" data-link class="header-search-btn" title="Search Courses & Programs" aria-label="Search Courses">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
           </a>
 
           <!-- Mobile Hamburger Toggle Button -->
@@ -95,47 +97,51 @@
   <!-- Mobile Navigation Drawer -->
   <aside class="mobile-nav-drawer" id="mobile-drawer" aria-label="Mobile Navigation">
     <div class="mobile-nav-header">
-      <div style="display: flex; align-items: center; gap: 0.6rem;">
-        <img src="assets/icons/college-logo.svg" alt="DYPCOE" style="width: 36px; height: 36px;" />
-        <div style="font-weight: 800; font-size: 0.95rem; color: var(--primary-navy);">
-          DYPCOE Akurdi
+      <div style="display: flex; align-items: center; gap: 0.65rem;">
+        <img src="assets/icons/college-logo.svg" alt="DYPCOE" style="width: 38px; height: 38px;" />
+        <div>
+          <div style="font-family: var(--font-family-heading); font-weight: 800; font-size: 1rem; color: var(--primary-brand); line-height: 1.1;">
+            D. Y. PATIL
+          </div>
+          <div style="font-size: 0.68rem; font-weight: 700; color: var(--text-muted); letter-spacing: 0.05em;">
+            DYPCOE • AKURDI
+          </div>
         </div>
       </div>
-      <button onclick="window.app.closeMobileNav()" style="font-size: 1.5rem; line-height: 1; color: var(--text-muted);">
+      <button onclick="window.app.closeMobileNav()" style="font-size: 1.35rem; line-height: 1; color: var(--text-muted); padding: 0.25rem;">
         ✕
       </button>
     </div>
 
     <ul class="mobile-nav-links">
-      <li><a href="/" data-link class="mobile-nav-link active"><span>🏠</span> Home</a></li>
-      <li><a href="/about" data-link class="mobile-nav-link"><span>🏛️</span> About College</a></li>
-      <li><a href="/departments" data-link class="mobile-nav-link"><span>🎓</span> Departments</a></li>
-      <li><a href="/courses" data-link class="mobile-nav-link"><span>📘</span> Courses & Degrees</a></li>
-      <li><a href="/faculty" data-link class="mobile-nav-link"><span>👨‍🏫</span> Faculty Directory</a></li>
-      <li><a href="/notices" data-link class="mobile-nav-link"><span>📢</span> Notice Board</a></li>
-      <li><a href="/contact" data-link class="mobile-nav-link"><span>✉️</span> Contact & Enquiry</a></li>
+      <li><a href="/" data-link class="mobile-nav-link active">Home</a></li>
+      <li><a href="/about" data-link class="mobile-nav-link">About Us</a></li>
+      <li><a href="/departments" data-link class="mobile-nav-link">Departments</a></li>
+      <li><a href="/courses" data-link class="mobile-nav-link">Courses & Degrees</a></li>
+      <li><a href="/faculty" data-link class="mobile-nav-link">Faculty Directory</a></li>
+      <li><a href="/notices" data-link class="mobile-nav-link">Notices & Circulars</a></li>
+      <li><a href="/contact" data-link class="mobile-nav-link">Contact & Enquiry</a></li>
     </ul>
 
     <div class="mobile-nav-footer">
-      <a href="/contact" data-link class="btn btn-primary" style="width: 100%;">
-        Admissions 2026-27
+      <a href="/contact" data-link class="btn btn-gold" style="width: 100%;">
+        Admissions Open 2026-27 →
       </a>
       <button onclick="window.app.showVivaGuide()" class="viva-pill-btn" style="justify-content: center;">
-        💡 SPA Viva Guide
+        💡 SPA Viva Guide (CCE-5)
       </button>
     </div>
   </aside>
 
   <!-- Main SPA Content Container (Injected Dynamically via Router) -->
   <main id="app" role="main" aria-live="polite">
-    <!-- Router dynamically injects view HTML here -->
     <div class="loading-indicator">
       <div class="spinner"></div>
-      <p class="loading-text">Initializing Single Page Application...</p>
+      <p class="loading-text">Loading D. Y. Patil College of Engineering Portal...</p>
     </div>
   </main>
 
-  <!-- Site Footer -->
+  <!-- Site Footer (Reference-Matched Deep Maroon Multi-Column Footer with Newsletter) -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
@@ -144,38 +150,38 @@
           <div class="footer-logo-row">
             <img src="assets/icons/college-logo.svg" alt="DYPCOE Akurdi Crest" class="footer-logo" />
             <div>
-              <div class="footer-college-name">D. Y. Patil College of Engineering</div>
-              <div class="footer-college-city">Akurdi, Pune - 411044</div>
+              <div class="footer-college-name">D. Y. PATIL</div>
+              <div class="footer-college-city">COLLEGE OF ENGINEERING, AKURDI</div>
             </div>
           </div>
           <p class="footer-about-text">
-            Established in 1984, DYPCOE is a leading engineering institute affiliated with SPPU and accredited with NAAC 'A+' Grade. Committed to nurturing ethical, globally competent engineering professionals.
+            Nurturing young engineers since 1984 with strong academic fundamentals, NAAC 'A' accredited excellence, and world-class research facilities in Pune.
           </p>
           <div class="footer-social-links">
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-link" title="Facebook">f</a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-link" title="Twitter / X">𝕏</a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn">in</a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-link" title="Instagram">📸</a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-link" title="Instagram">ig</a>
             <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-link" title="YouTube">▶</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn">in</a>
           </div>
         </div>
 
         <!-- Col 2: Quick Links -->
         <div>
-          <h4 class="footer-col-title">Quick Links</h4>
+          <h4 class="footer-col-title">QUICK LINKS</h4>
           <ul class="footer-links-list">
-            <li><a href="/" data-link class="footer-link">Home Portal</a></li>
-            <li><a href="/about" data-link class="footer-link">About College & Legacy</a></li>
-            <li><a href="/courses" data-link class="footer-link">Undergraduate & PG Courses</a></li>
+            <li><a href="/" data-link class="footer-link">Home</a></li>
+            <li><a href="/about" data-link class="footer-link">About Us</a></li>
+            <li><a href="/departments" data-link class="footer-link">Departments</a></li>
+            <li><a href="/courses" data-link class="footer-link">Courses</a></li>
             <li><a href="/faculty" data-link class="footer-link">Faculty Directory</a></li>
-            <li><a href="/notices" data-link class="footer-link">Examinations & Notices</a></li>
-            <li><a href="/contact" data-link class="footer-link">Admission Enquiry Form</a></li>
+            <li><a href="/notices" data-link class="footer-link">Notices & Circulars</a></li>
+            <li><a href="/contact" data-link class="footer-link">Contact Us</a></li>
           </ul>
         </div>
 
-        <!-- Col 3: Academic Departments -->
+        <!-- Col 3: Departments -->
         <div>
-          <h4 class="footer-col-title">Departments</h4>
+          <h4 class="footer-col-title">DEPARTMENTS</h4>
           <ul class="footer-links-list">
             <li><a href="/departments/aids" data-link class="footer-link">AI & Data Science</a></li>
             <li><a href="/departments/comp" data-link class="footer-link">Computer Engineering</a></li>
@@ -186,24 +192,50 @@
           </ul>
         </div>
 
-        <!-- Col 4: Campus Contact -->
+        <!-- Col 4: Contact Us -->
         <div>
-          <h4 class="footer-col-title">Campus Contact</h4>
+          <h4 class="footer-col-title">CONTACT US</h4>
           <div class="footer-contact-item">
             <span class="footer-contact-icon">📍</span>
-            <span>D. Y. Patil Educational Complex, Sector 29, Nigdi Pradhikaran, Akurdi, Pune - 411044</span>
+            <span>Sector 29, Nigdi Pradhikaran, Akurdi, Pune - 411044</span>
           </div>
           <div class="footer-contact-item">
             <span class="footer-contact-icon">📞</span>
-            <span>+91 (020) 27653058 / 27653054</span>
+            <span>+91 (020) 27653058</span>
           </div>
           <div class="footer-contact-item">
             <span class="footer-contact-icon">✉️</span>
             <span>admissions@dypcoeakurdi.ac.in</span>
           </div>
           <div class="footer-contact-item">
-            <span class="footer-contact-icon">🌐</span>
-            <span>DTE Institute Code: 6272</span>
+            <span class="footer-contact-icon">🕒</span>
+            <span>Mon – Sat: 9:00 AM – 5:30 PM</span>
+          </div>
+        </div>
+
+        <!-- Col 5: Newsletter (Matches Reference Footer) -->
+        <div>
+          <h4 class="footer-col-title">NEWSLETTER</h4>
+          <p class="footer-about-text" style="margin-bottom: 1rem;">
+            Subscribe for latest campus circulars, exam timetables, and event updates.
+          </p>
+          <form id="footer-newsletter-form" class="footer-newsletter-form" novalidate>
+            <input
+              type="email"
+              id="footer-newsletter-email"
+              class="footer-newsletter-input"
+              placeholder="Enter your email"
+              aria-label="Email for newsletter"
+              required
+            />
+            <button type="submit" class="footer-newsletter-btn" aria-label="Subscribe">
+              ➤
+            </button>
+          </form>
+          <div style="margin-top: 1rem;">
+            <button onclick="window.app.showVivaGuide()" class="viva-pill-btn">
+              💡 Viva Quick Guide (CCE-5)
+            </button>
           </div>
         </div>
       </div>
@@ -211,16 +243,12 @@
       <!-- Footer Bottom Bar -->
       <div class="footer-bottom">
         <div>
-          © 2026 Dr. D. Y. Patil College of Engineering, Akurdi, Pune. All Rights Reserved.
-          <span style="display: block; font-size: 0.75rem; margin-top: 0.2rem; color: #94A3B8;">
-            Web Technology 1 – CCE-5 Mini Project | Single Page Application (SPA)
-          </span>
+          © 2026 Dr. D. Y. Patil College of Engineering, Akurdi, Pune. All Rights Reserved. | Web Technology 1 – CCE-5 SPA Project
         </div>
-        <div style="display: flex; align-items: center; gap: 1rem;">
-          <button onclick="window.app.showVivaGuide()" class="viva-pill-btn">
-            💡 Viva Quick Guide (CCE-5)
-          </button>
-          <a href="/contact" data-link style="font-weight: 600;">Admissions Help</a>
+        <div style="display: flex; align-items: center; gap: 1.25rem;">
+          <span>DTE Code: 6272</span>
+          <a href="/about" data-link>Accreditations</a>
+          <a href="/contact" data-link>Admissions Desk</a>
         </div>
       </div>
     </div>
@@ -231,16 +259,14 @@
     ↑
   </button>
 
-  <!-- Global Modal Dialog (Used for Course Details, Notice Reader, Faculty Profiles, and Viva Sheet) -->
+  <!-- Global Modal Dialog -->
   <div class="modal-backdrop" id="global-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal-dialog">
       <div class="modal-header">
         <h3 class="modal-title" id="modal-title">Modal Title</h3>
         <button class="modal-close-btn" id="modal-close-btn" aria-label="Close modal">✕</button>
       </div>
-      <div class="modal-body" id="modal-body">
-        <!-- Dynamic content injected here -->
-      </div>
+      <div class="modal-body" id="modal-body"></div>
     </div>
   </div>
 
@@ -248,7 +274,6 @@
   <div class="toast-container" id="toast-container" aria-live="assertive"></div>
 
   <!-- JavaScript Modules (Loaded in Strict Dependency Order) -->
-  <!-- Optional fallback registry providing offline & file:/// execution support -->
   <script src="data/fallback-data.js"></script>
   <script src="js/router.js"></script>
   <script src="js/departments.js"></script>

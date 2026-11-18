@@ -83,7 +83,22 @@ const DepartmentsModule = (function () {
   }
 
   /**
-   * Generates HTML markup for a single Department Card
+   * Returns a crisp inline SVG icon for each engineering branch
+   */
+  function getDeptSvgIcon(iconName) {
+    const icons = {
+      brain: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/></svg>`,
+      'laptop-code': `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="12" x="3" y="4" rx="2"/><path d="M2 20h20"/><path d="m10 8-2 2 2 2"/><path d="m14 8 2 2-2 2"/></svg>`,
+      network: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></svg>`,
+      cogs: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg>`,
+      building: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="16" height="20" x="4" y="2" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>`,
+      signal: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h.01"/><path d="M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V8"/><path d="M22 4v16"/></svg>`
+    };
+    return icons[iconName] || icons['laptop-code'];
+  }
+
+  /**
+   * Generates HTML markup for a single Department Card (Reference Style with Overlapping Icon)
    * @param {Object} dept - Department data object
    */
   function renderDepartmentCard(dept) {
@@ -94,11 +109,14 @@ const DepartmentsModule = (function () {
           <span class="dept-card-badge">${dept.code} • ESTD ${dept.establishedYear}</span>
           <span class="dept-card-intake">Intake: ${dept.intake}</span>
         </div>
+        <div class="ref-card-icon-badge" aria-hidden="true">
+          ${getDeptSvgIcon(dept.icon)}
+        </div>
         <div class="dept-card-body">
           <h3 class="dept-card-title">${dept.name}</h3>
           <p class="dept-card-desc">${dept.shortDesc}</p>
           <div class="dept-card-meta">
-            <span style="font-size: 0.82rem; color: var(--text-muted); font-weight: 600;">
+            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">
               Labs: ${dept.laboratories ? dept.laboratories.length : 3}+
             </span>
             <a href="/departments/${dept.id}" data-link class="btn btn-outline btn-sm">

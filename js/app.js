@@ -3,17 +3,7 @@
  * MAIN APPLICATION MODULE (js/app.js)
  * D. Y. Patil College of Engineering, Akurdi - Web Technology 1 (CCE-5)
  * Unit V: Single Page Application (SPA) Concepts
- * ============================================================================
- *
- * Concepts Demonstrated for Viva:
- * 1. Single Page Application Architecture:
- *    - Route registration mapping paths to asynchronous view generators
- *    - HTML5 History API (`pushState`, `popstate`)
- *    - Intercepting links to prevent page refreshes
- * 2. Asynchronous dynamic content loading (Fetch API + JSON)
- * 3. Modal and Toast notification global controller
- * 4. Responsive mobile menu & scroll interactions
- * 5. Interactive Viva Help Sheet for examiners
+ * Design: Prestige Academic Layout adapted to DYPCOE Brand (Deep Maroon & Gold)
  * ============================================================================
  */
 
@@ -28,6 +18,26 @@ class App {
     this.mobileBackdrop = document.getElementById('mobile-backdrop');
     this.backToTopBtn = document.getElementById('back-to-top');
 
+    // Hero Carousel State
+    this.currentSlide = 0;
+    this.heroSlides = [
+      {
+        image: 'assets/images/campus-gate.jpg',
+        title: 'Inspiring Excellence,<br />Building <span class="gold-accent">Futures</span>',
+        desc: 'At Dr. D. Y. Patil College of Engineering, Akurdi, Pune (Estd. 1984), we nurture engineering minds with strong fundamentals, NAAC \'A\' accredited quality, and boundless global opportunities.'
+      },
+      {
+        image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1600&q=80',
+        title: 'Empowering Engineers<br />Through <span class="gold-accent">Innovation</span>',
+        desc: 'Affiliated to Savitribai Phule Pune University (SPPU) & AICTE Approved (DTE Code: 6272), featuring NVIDIA GPU AI Labs, Industry 4.0 Centres, and 150+ corporate recruiters.'
+      },
+      {
+        image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1600&q=80',
+        title: 'Four Decades of<br />Engineering <span class="gold-accent">Legacy</span>',
+        desc: 'Situated in the Pimpri-Chinchwad automotive and IT industrial corridor, preparing socially responsible technocrats with packages up to 43 LPA.'
+      }
+    ];
+
     this.initUIListeners();
     this.registerRoutes();
   }
@@ -36,28 +46,17 @@ class App {
    * Initializes global UI event listeners
    */
   initUIListeners() {
-    // Header shadow on scroll
+    // Sticky header shadow & back-to-top visibility
     window.addEventListener('scroll', () => {
       const header = document.querySelector('.site-header');
       if (header) {
-        if (window.scrollY > 30) {
-          header.classList.add('scrolled');
-        } else {
-          header.classList.remove('scrolled');
-        }
+        header.classList.toggle('scrolled', window.scrollY > 25);
       }
-
-      // Back to top visibility
       if (this.backToTopBtn) {
-        if (window.scrollY > 350) {
-          this.backToTopBtn.classList.add('visible');
-        } else {
-          this.backToTopBtn.classList.remove('visible');
-        }
+        this.backToTopBtn.classList.toggle('visible', window.scrollY > 350);
       }
     });
 
-    // Back to top click
     if (this.backToTopBtn) {
       this.backToTopBtn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -72,35 +71,83 @@ class App {
       this.mobileBackdrop.addEventListener('click', () => this.closeMobileNav());
     }
 
-    // Modal Close Button & Backdrop click
+    // Modal close handlers
     const modalCloseBtn = document.getElementById('modal-close-btn');
     if (modalCloseBtn) {
       modalCloseBtn.addEventListener('click', () => this.closeModal());
     }
     if (this.modalBackdrop) {
       this.modalBackdrop.addEventListener('click', (e) => {
-        if (e.target === this.modalBackdrop) {
-          this.closeModal();
-        }
+        if (e.target === this.modalBackdrop) this.closeModal();
       });
     }
 
-    // Escape key closes modal & mobile nav
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         this.closeModal();
         this.closeMobileNav();
       }
     });
+
+    // Footer Newsletter Form (Client-side validation + Toast)
+    const newsletterForm = document.getElementById('footer-newsletter-form');
+    if (newsletterForm) {
+      newsletterForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const emailInput = document.getElementById('footer-newsletter-email');
+        const email = emailInput ? emailInput.value.trim() : '';
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        if (!emailRegex.test(email)) {
+          this.showToast('Please enter a valid email address to subscribe.', 'danger');
+          return;
+        }
+
+        this.showToast(`Subscribed ${email} to DYPCOE campus circulars & updates!`, 'success');
+        newsletterForm.reset();
+      });
+    }
   }
 
   /**
-   * Mobile navigation drawer toggles
+   * Hero Slider Controls
+   */
+  updateHeroSlide(index) {
+    this.currentSlide = (index + this.heroSlides.length) % this.heroSlides.length;
+    const slide = this.heroSlides[this.currentSlide];
+
+    const bgEl = document.getElementById('hero-bg-layer');
+    const titleEl = document.getElementById('hero-slide-title');
+    const descEl = document.getElementById('hero-slide-desc');
+    const dots = document.querySelectorAll('.hero-dot');
+
+    if (bgEl) bgEl.style.backgroundImage = `url('${slide.image}')`;
+    if (titleEl) titleEl.innerHTML = slide.title;
+    if (descEl) descEl.textContent = slide.desc;
+
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === this.currentSlide);
+    });
+  }
+
+  prevHeroSlide() {
+    this.updateHeroSlide(this.currentSlide - 1);
+  }
+
+  nextHeroSlide() {
+    this.updateHeroSlide(this.currentSlide + 1);
+  }
+
+  goToHeroSlide(index) {
+    this.updateHeroSlide(index);
+  }
+
+  /**
+   * Mobile navigation drawer controls
    */
   toggleMobileNav() {
     if (!this.mobileDrawer) return;
-    const isOpen = this.mobileDrawer.classList.contains('open');
-    if (isOpen) {
+    if (this.mobileDrawer.classList.contains('open')) {
       this.closeMobileNav();
     } else {
       this.openMobileNav();
@@ -142,9 +189,6 @@ class App {
 
   /**
    * Global Toast Notification Controller
-   * @param {string} message - Notification text
-   * @param {string} type - 'success' | 'danger' | 'warning' | 'info'
-   * @param {number} duration - Milliseconds before auto dismiss
    */
   showToast(message, type = 'info', duration = 4000) {
     if (!this.toastContainer) return;
@@ -154,16 +198,9 @@ class App {
 
     let icon = 'ℹ️';
     let title = 'Notification';
-    if (type === 'success') {
-      icon = '✅';
-      title = 'Success';
-    } else if (type === 'danger') {
-      icon = '❌';
-      title = 'Notice';
-    } else if (type === 'warning') {
-      icon = '⚠️';
-      title = 'Warning';
-    }
+    if (type === 'success') { icon = '✅'; title = 'Success'; }
+    else if (type === 'danger') { icon = '❌'; title = 'Attention'; }
+    else if (type === 'warning') { icon = '⚠️'; title = 'Notice'; }
 
     toast.innerHTML = `
       <span class="toast-icon">${icon}</span>
@@ -180,9 +217,7 @@ class App {
       toast.style.transform = 'translateX(100%)';
       toast.style.transition = 'all 0.3s ease-out';
       setTimeout(() => {
-        if (toast.parentNode) {
-          toast.parentNode.removeChild(toast);
-        }
+        if (toast.parentNode) toast.parentNode.removeChild(toast);
       }, 300);
     }, duration);
   }
@@ -194,28 +229,22 @@ class App {
     const router = window.router;
     if (!router) return;
 
-    // Route: / (Home)
     router.addRoute('/', () => this.renderHomePage(), 'Home | D. Y. Patil College of Engineering, Akurdi');
     router.addRoute('/home', () => this.renderHomePage(), 'Home | D. Y. Patil College of Engineering, Akurdi');
-
-    // Route: /about
     router.addRoute('/about', () => this.renderAboutPage(), 'About Us | D. Y. Patil College of Engineering, Akurdi');
 
-    // Route: /departments
     router.addRoute(
       '/departments',
       () => window.DepartmentsModule.renderDepartmentsPage(),
       'Academic Departments | DYPCOE Pune'
     );
 
-    // Route: /departments/:id (Dynamic parameter)
     router.addRoute(
       '/departments/:id',
       (params) => window.DepartmentsModule.renderDepartmentDetail(params),
       'Department Details | DYPCOE Pune'
     );
 
-    // Route: /courses
     router.routes.push({
       path: '/courses',
       view: () => window.CoursesModule.renderCoursesPage(),
@@ -224,7 +253,6 @@ class App {
       afterRender: () => window.CoursesModule.initEvents()
     });
 
-    // Route: /faculty
     router.routes.push({
       path: '/faculty',
       view: () => window.FacultyModule.renderFacultyPage(),
@@ -233,7 +261,6 @@ class App {
       afterRender: () => window.FacultyModule.initEvents()
     });
 
-    // Route: /notices
     router.routes.push({
       path: '/notices',
       view: () => window.NoticesModule.renderNoticesPage(),
@@ -242,7 +269,6 @@ class App {
       afterRender: () => window.NoticesModule.initEvents()
     });
 
-    // Route: /contact
     router.routes.push({
       path: '/contact',
       view: () => window.ValidationModule.renderContactPage(),
@@ -253,404 +279,412 @@ class App {
   }
 
   /**
-   * Generates markup for the comprehensive Home Page
+   * Renders the Home Page matching the Reference Design adapted to DYPCOE Akurdi
    */
   async renderHomePage() {
     const departmentsOverviewHTML = await window.DepartmentsModule.renderHomeOverview();
     const noticesWidgetHTML = await window.NoticesModule.renderHomeNotices();
+    const firstSlide = this.heroSlides[0];
+    this.currentSlide = 0;
 
     return `
-      <!-- 1. Hero Section -->
-      <section class="hero-section">
+      <!-- 1. Full-Bleed Hero Banner with Slider Controls -->
+      <section class="hero-slider">
+        <div
+          id="hero-bg-layer"
+          class="hero-bg-layer"
+          style="background-image: url('${firstSlide.image}');"
+        ></div>
+        <div class="hero-overlay"></div>
+
+        <button class="hero-arrow hero-arrow-prev" onclick="window.app.prevHeroSlide()" aria-label="Previous slide">‹</button>
+        <button class="hero-arrow hero-arrow-next" onclick="window.app.nextHeroSlide()" aria-label="Next slide">›</button>
+
         <div class="container">
-          <div class="hero-grid">
-            <div class="hero-content">
-              <div class="hero-pill">
-                <span>🏛️ Dr. D. Y. Patil Pratishthan's</span>
-                <span>•</span>
-                <span>NAAC 'A' Accredited</span>
-                <span>•</span>
-                <span>SPPU Affiliated</span>
-              </div>
-              <h1 class="hero-title">
-                Building Future Through <br />
-                <span class="highlight">Innovation & Excellence</span>
-              </h1>
-              <p class="hero-description">
-                Dr. D. Y. Patil College of Engineering, Akurdi, Pune (Estd. 1984) is approved by AICTE, affiliated with Savitribai Phule Pune University, and recognized by DTE Maharashtra (Code: 6272). Empowering students with outcome-based engineering education and high-impact industrial exposure.
-              </p>
-              <div class="hero-buttons">
-                <a href="/departments" data-link class="btn btn-gold btn-lg">
-                  Explore Departments →
-                </a>
-                <a href="/contact" data-link class="btn btn-outline-white btn-lg">
-                  Admissions & Enquiry
-                </a>
-                <button onclick="window.app.showVivaGuide()" class="btn btn-sm" style="color: #FCD34D; border: 1px dashed rgba(251, 191, 36, 0.5); border-radius: var(--radius-sm); margin-left: 0.5rem;">
-                  💡 Viva Guide
-                </button>
-              </div>
-            </div>
-
-            <!-- Campus Entrance Showcase Card -->
-            <div class="hero-campus-card">
-              <img
-                src="assets/images/campus-gate.jpg"
-                alt="D. Y. Patil Akurdi Campus Entrance Gate"
-                class="hero-campus-img"
-              />
-              <div class="hero-campus-badge">
-                <div class="hero-campus-title">Dr. D. Y. Patil Educational Complex</div>
-                <div class="hero-campus-subtitle">Main Campus Entrance Gate • Sector 29, Nigdi Pradhikaran, Akurdi, Pune</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Hero Stats Bar -->
-          <div class="hero-stats-grid">
-            <div class="hero-stat-card">
-              <span class="hero-stat-number">40+</span>
-              <span class="hero-stat-label">Years of Academic Legacy</span>
-            </div>
-            <div class="hero-stat-card">
-              <span class="hero-stat-number">1080+</span>
-              <span class="hero-stat-label">Annual Engineering Intake</span>
-            </div>
-            <div class="hero-stat-card">
-              <span class="hero-stat-number">43 LPA</span>
-              <span class="hero-stat-label">Highest Campus Package</span>
-            </div>
-            <div class="hero-stat-card">
-              <span class="hero-stat-number">15,000+</span>
-              <span class="hero-stat-label">Global Alumni Network</span>
+          <div class="hero-inner">
+            <h1 id="hero-slide-title" class="hero-title">${firstSlide.title}</h1>
+            <p id="hero-slide-desc" class="hero-description">${firstSlide.desc}</p>
+            <div class="hero-buttons">
+              <a href="/contact" data-link class="btn btn-gold btn-lg">
+                ADMISSIONS OPEN →
+              </a>
+              <a href="/departments" data-link class="btn btn-outline-white btn-lg">
+                EXPLORE DEPARTMENTS →
+              </a>
             </div>
           </div>
         </div>
+
+        <div class="hero-dots" aria-label="Slide indicators">
+          <button class="hero-dot active" onclick="window.app.goToHeroSlide(0)" aria-label="Slide 1"></button>
+          <button class="hero-dot" onclick="window.app.goToHeroSlide(1)" aria-label="Slide 2"></button>
+          <button class="hero-dot" onclick="window.app.goToHeroSlide(2)" aria-label="Slide 3"></button>
+        </div>
       </section>
 
-      <!-- 2. Welcome / About College Snippet -->
-      <section class="section">
+      <!-- 2. Floating 5-Column Feature Bar (Overlapping Hero Bottom Edge) -->
+      <div class="feature-strip-wrap">
+        <div class="container">
+          <div class="feature-strip-card">
+            <div class="feature-strip-item">
+              <div class="feature-strip-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
+              </div>
+              <div>
+                <div class="feature-strip-title">Smart Classrooms</div>
+                <div class="feature-strip-sub">ICT-enabled interactive lecture halls</div>
+              </div>
+            </div>
+
+            <div class="feature-strip-item">
+              <div class="feature-strip-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div>
+                <div class="feature-strip-title">Experienced Faculty</div>
+                <div class="feature-strip-sub">70+ Ph.D. & senior mentors</div>
+              </div>
+            </div>
+
+            <div class="feature-strip-item">
+              <div class="feature-strip-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/></svg>
+              </div>
+              <div>
+                <div class="feature-strip-title">PCMC Industrial Hub</div>
+                <div class="feature-strip-sub">150+ IT & automotive recruiters</div>
+              </div>
+            </div>
+
+            <div class="feature-strip-item">
+              <div class="feature-strip-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+              </div>
+              <div>
+                <div class="feature-strip-title">Holistic Excellence</div>
+                <div class="feature-strip-sub">BAJA SAE, Hackathons & clubs</div>
+              </div>
+            </div>
+
+            <div class="feature-strip-item">
+              <div class="feature-strip-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6"/><path d="M10 9V3"/><path d="M14 9V3"/><path d="m7.5 14.5 2.5-5.5h4l2.5 5.5A4 4 0 0 1 13 21h-2a4 4 0 0 1-3.5-6.5Z"/></svg>
+              </div>
+              <div>
+                <div class="feature-strip-title">75+ Modern Labs</div>
+                <div class="feature-strip-sub">NVIDIA AI, VLSI & CAD centres</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Welcome Section (Left Real Campus Photo + Right Intro & 4 Inline Stats) -->
+      <section class="section section-white">
         <div class="container">
           <div class="welcome-grid">
-            <div class="welcome-image-stack">
+            <div class="welcome-photo-frame">
               <img
                 src="assets/images/campus-gate.jpg"
-                alt="Dr. D. Y. Patil College of Engineering Akurdi Campus"
+                alt="Dr. D. Y. Patil College of Engineering Akurdi Campus Gate"
                 class="welcome-img-main"
-                loading="lazy"
               />
-              <div class="welcome-badge-float">
-                <div class="welcome-badge-icon">🏆</div>
-                <div>
-                  <div class="welcome-badge-title">Grade 'A'</div>
-                  <div class="welcome-badge-text">NAAC Accredited • DTE Code: 6272</div>
-                </div>
+              <div class="welcome-photo-caption">
+                Dr. D. Y. Patil Educational Complex • Sector 29, Nigdi Pradhikaran, Akurdi, Pune
               </div>
             </div>
 
             <div class="welcome-content">
-              <span class="section-badge">Welcome to DYPCOE</span>
-              <h2 class="section-title">A Heritage of Engineering Leadership in Pune</h2>
-              <p class="lead">
-                Transforming ambitious young minds into globally competitive technocrats, innovators, and entrepreneurs since 1984.
-              </p>
+              <span class="section-eyebrow">WELCOME TO</span>
+              <h2 class="section-title">D. Y. Patil College of Engineering</h2>
               <p>
-                Situated in the bustling industrial corridor of Pimpri-Chinchwad, Pune, Dr. D. Y. Patil College of Engineering offers students direct proximity to leading automotive, IT, and manufacturing hubs like Tata Motors, Infosys, and Bharat Forge.
+                Established in 1984 under Padma Shri Dr. D. Y. Patil, DYPCOE Akurdi is a premier engineering institution affiliated with Savitribai Phule Pune University (SPPU), approved by AICTE, and recognized by DTE Maharashtra (Code: 6272). We blend strong engineering fundamentals with industrial innovation to prepare confident global technocrats.
               </p>
 
-              <!-- Principal Desk Highlight -->
-              <div style="background: var(--bg-light); border-left: 4px solid var(--secondary-blue); padding: 1rem 1.25rem; border-radius: var(--radius-sm); margin: 1.25rem 0;">
-                <div style="font-weight: 700; color: var(--primary-navy); font-size: 0.95rem;">From the Principal's Desk:</div>
-                <p style="font-size: 0.9rem; color: var(--text-secondary); font-style: italic; margin-top: 0.35rem;">
-                  "We are dedicated to preparing engineers with strong fundamentals, creative problem-solving abilities, and high ethical standards, bridging academia and industry in the heart of Pune's automotive and IT corridor."
+              <!-- Principal's Desk Quote -->
+              <div class="principal-quote-box">
+                <p class="principal-quote-text">
+                  "We are dedicated to preparing engineers with strong fundamentals, creative problem-solving abilities, and high ethical standards, bridging academia and industry in Pune's automotive and IT corridor."
                 </p>
-                <div style="font-size: 0.82rem; font-weight: 700; color: var(--secondary-blue); margin-top: 0.4rem;">
-                  — Dr. Mrs. P. Malathi, Principal, DYPCOE Akurdi
+                <div class="principal-quote-author">— Dr. Mrs. P. Malathi, Principal, DYPCOE Akurdi</div>
+              </div>
+
+              <!-- 4 Inline Stats Row (Matches Reference Layout) -->
+              <div class="inline-stats-row">
+                <div class="inline-stat-item">
+                  <span class="inline-stat-value">NAAC 'A'</span>
+                  <span class="inline-stat-label">Accredited Grade</span>
+                </div>
+                <div class="inline-stat-item">
+                  <span class="inline-stat-value">SPPU</span>
+                  <span class="inline-stat-label">Pune University</span>
+                </div>
+                <div class="inline-stat-item">
+                  <span class="inline-stat-value">40+</span>
+                  <span class="inline-stat-label">Years of Legacy</span>
+                </div>
+                <div class="inline-stat-item">
+                  <span class="inline-stat-value">43 LPA</span>
+                  <span class="inline-stat-label">Highest Package</span>
                 </div>
               </div>
 
-              <div class="feature-checklist">
-                <div class="feature-check-item">
-                  <span class="check-icon">✔</span> Savitribai Phule Pune University
-                </div>
-                <div class="feature-check-item">
-                  <span class="check-icon">✔</span> NBA Accredited Departments
-                </div>
-                <div class="feature-check-item">
-                  <span class="check-icon">✔</span> AICTE Approved Institution
-                </div>
-                <div class="feature-check-item">
-                  <span class="check-icon">✔</span> DTE Institute Code: 6272
-                </div>
-                <div class="feature-check-item">
-                  <span class="check-icon">✔</span> NVIDIA & AWS AI Innovation Labs
-                </div>
-                <div class="feature-check-item">
-                  <span class="check-icon">✔</span> 100% Placement Assistance Cell
-                </div>
-              </div>
-
-              <div style="margin-top: 1.5rem;">
-                <a href="/about" data-link class="btn btn-primary">
-                  Learn More About College →
-                </a>
-              </div>
+              <a href="/about" data-link class="btn btn-primary">
+                READ MORE ABOUT US →
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- 3. Academic Highlights Section -->
+      <!-- 4. Academics Section ("Explore. Learn. Excel." + 4 Cards + Circular Visual Ribbon) -->
       <section class="section section-light">
         <div class="container">
-          <div class="section-header">
-            <span class="section-badge">Academic Highlights</span>
-            <h2 class="section-title">Designed for Modern Engineering</h2>
-            <p class="section-subtitle">
-              Our campus blends rigorous university curriculum with industrial certifications, research opportunities, and startup incubation.
-            </p>
-          </div>
+          <div class="academics-layout">
+            <div>
+              <span class="section-eyebrow">ACADEMICS</span>
+              <h2 class="section-title">Explore. Learn. Excel.</h2>
 
-          <div class="highlights-grid">
-            <div class="highlight-card">
-              <div class="highlight-icon-box">🧠</div>
-              <h3 class="highlight-title">AI & Cognitive Computing</h3>
-              <p class="highlight-text">
-                Dedicated GPU workstation clusters powering machine learning, computer vision, natural language processing, and generative AI research.
-              </p>
+              <div class="academics-cards-grid">
+                <div class="academic-mini-card">
+                  <div class="academic-mini-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                  </div>
+                  <h3 class="academic-mini-title">SPPU Curriculum</h3>
+                  <p class="academic-mini-desc">Outcome-based B.Tech, M.Tech & Ph.D. programs with NBA accreditation.</p>
+                </div>
+
+                <div class="academic-mini-card">
+                  <div class="academic-mini-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                  </div>
+                  <h3 class="academic-mini-title">Ph.D. Mentors</h3>
+                  <p class="academic-mini-desc">Acclaimed professors guiding IEEE research papers, patents & projects.</p>
+                </div>
+
+                <div class="academic-mini-card">
+                  <div class="academic-mini-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+                  </div>
+                  <h3 class="academic-mini-title">Innovative Labs</h3>
+                  <p class="academic-mini-desc">Hands-on learning in NVIDIA AI, Cadence VLSI, Cloud & Robotics labs.</p>
+                </div>
+
+                <div class="academic-mini-card">
+                  <div class="academic-mini-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+                  </div>
+                  <h3 class="academic-mini-title">Career Driven</h3>
+                  <p class="academic-mini-desc">Dedicated Training & Placement Cell with 150+ corporate recruiters.</p>
+                </div>
+              </div>
             </div>
 
-            <div class="highlight-card">
-              <div class="highlight-icon-box">🏢</div>
-              <h3 class="highlight-title">Industry Hub Synergies</h3>
-              <p class="highlight-text">
-                Strategic industrial location in PCMC offering internships, live client capstone projects, and mentorship with over 150+ corporate partners.
-              </p>
-            </div>
-
-            <div class="highlight-card">
-              <div class="highlight-icon-box">🔬</div>
-              <h3 class="highlight-title">Advanced Research Centres</h3>
-              <p class="highlight-text">
-                Recognized Ph.D. research centres affiliated with SPPU, equipped with Cadence EDA suites, ANSYS simulation tools, and material testing labs.
-              </p>
-            </div>
-
-            <div class="highlight-card">
-              <div class="highlight-icon-box">🚀</div>
-              <h3 class="highlight-title">Innovation & Startup Cell</h3>
-              <p class="highlight-text">
-                Active incubation centre fostering student entrepreneurship, patent filing support, seed funding access, and national hackathon sponsorships.
-              </p>
-            </div>
-
-            <div class="highlight-card">
-              <div class="highlight-icon-box">📚</div>
-              <h3 class="highlight-title">Digital Knowledge Centre</h3>
-              <p class="highlight-text">
-                Fully automated Central Library housing 52,000+ volumes, IEEE/ACM digital repository access, national and international journal archives.
-              </p>
-            </div>
-
-            <div class="highlight-card">
-              <div class="highlight-icon-box">🌍</div>
-              <h3 class="highlight-title">Global Placement Records</h3>
-              <p class="highlight-text">
-                Tier-1 software and core engineering firms recruit on campus annually with packages reaching up to 43 LPA and average package of 6.8 LPA.
-              </p>
+            <!-- Right Circular Visual + Maroon Ribbon -->
+            <div class="holistic-circle-wrap">
+              <div class="holistic-circle-img-box">
+                <img
+                  src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=700&q=80"
+                  alt="DYPCOE Engineering Students"
+                  class="holistic-circle-img"
+                  loading="lazy"
+                />
+              </div>
+              <div class="holistic-ribbon-card">
+                <div class="holistic-ribbon-title">Holistic Growth</div>
+                <div class="holistic-ribbon-sub">Innovation • Research • Values</div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- 4. Departments Overview Section -->
-      <section class="section">
+      <!-- 5. World-Class Infrastructure (4 Icon-Overlap Photo Cards Matching Reference) -->
+      <section class="section section-white">
         <div class="container">
-          <div class="section-header">
-            <span class="section-badge">Engineering Disciplines</span>
-            <h2 class="section-title">Departments Overview</h2>
-            <p class="section-subtitle">
-              Choose from 6 premier engineering branches tailored to future industry requirements.
-            </p>
+          <div style="margin-bottom: 2rem;">
+            <span class="section-eyebrow">FACILITIES</span>
+            <h2 class="section-title">World-Class Infrastructure</h2>
+          </div>
+
+          <div class="infra-4-grid">
+            <div class="ref-photo-card">
+              <div class="ref-card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=700&q=80" alt="Smart Classrooms" class="ref-card-img" loading="lazy" />
+              </div>
+              <div class="ref-card-icon-badge" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
+              </div>
+              <div class="ref-card-body">
+                <h3 class="ref-card-title">Smart Classrooms</h3>
+                <p class="ref-card-desc">Air-conditioned interactive lecture halls with projectors and high-speed campus Wi-Fi.</p>
+              </div>
+            </div>
+
+            <div class="ref-photo-card">
+              <div class="ref-card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=700&q=80" alt="Engineering Laboratories" class="ref-card-img" loading="lazy" />
+              </div>
+              <div class="ref-card-icon-badge" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6"/><path d="M10 9V3"/><path d="M14 9V3"/><path d="m7.5 14.5 2.5-5.5h4l2.5 5.5A4 4 0 0 1 13 21h-2a4 4 0 0 1-3.5-6.5Z"/></svg>
+              </div>
+              <div class="ref-card-body">
+                <h3 class="ref-card-title">75+ Engineering Labs</h3>
+                <p class="ref-card-desc">NVIDIA GPU computing, Cadence VLSI, ANSYS CAD/CAM, and NABL testing facilities.</p>
+              </div>
+            </div>
+
+            <div class="ref-photo-card">
+              <div class="ref-card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=700&q=80" alt="Central Digital Library" class="ref-card-img" loading="lazy" />
+              </div>
+              <div class="ref-card-icon-badge" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+              </div>
+              <div class="ref-card-body">
+                <h3 class="ref-card-title">Central Digital Library</h3>
+                <p class="ref-card-desc">52,000+ engineering books, IEEE Xplore & ScienceDirect access, and 200-seat reading hall.</p>
+              </div>
+            </div>
+
+            <div class="ref-photo-card">
+              <div class="ref-card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=700&q=80" alt="Hostels & Campus Amenities" class="ref-card-img" loading="lazy" />
+              </div>
+              <div class="ref-card-icon-badge" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              </div>
+              <div class="ref-card-body">
+                <h3 class="ref-card-title">Hostels & Sports Arena</h3>
+                <p class="ref-card-desc">Secure boys & girls residential hostels, sports grounds, gym, and 29-acre green campus.</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="text-align: center; margin-top: 2.25rem;">
+            <a href="/about" data-link class="btn btn-outline-dark">
+              VIEW ALL FACILITIES →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. Academic Departments Overview (Loaded Dynamically from departments.json) -->
+      <section class="section section-light">
+        <div class="container">
+          <div class="section-header-row">
+            <div>
+              <span class="section-eyebrow">ENGINEERING BRANCHES</span>
+              <h2 class="section-title" style="margin-bottom: 0;">Academic Departments</h2>
+            </div>
+            <a href="/departments" data-link class="btn btn-outline-dark btn-sm">
+              VIEW ALL DEPARTMENTS →
+            </a>
           </div>
 
           <div class="departments-grid">
             ${departmentsOverviewHTML}
           </div>
-
-          <div style="text-align: center; margin-top: 3rem;">
-            <a href="/departments" data-link class="btn btn-secondary btn-lg">
-              View All Department Details & Labs →
-            </a>
-          </div>
         </div>
       </section>
 
-      <!-- 5. Latest Notices Section -->
-      <section class="section section-light">
+      <!-- 7. Latest Notices & Circulars (Loaded Dynamically from notices.json) -->
+      <section class="section section-white">
         <div class="container">
-          <div class="section-header">
-            <span class="section-badge">Campus Updates</span>
-            <h2 class="section-title">Latest Notices & Circulars</h2>
-            <p class="section-subtitle">
-              Live bulletin board for examinations, academic deadlines, technical festivals, and administrative circulars.
-            </p>
+          <div class="section-header-row">
+            <div>
+              <span class="section-eyebrow">CAMPUS BULLETIN</span>
+              <h2 class="section-title" style="margin-bottom: 0;">Latest Notices & Circulars</h2>
+            </div>
+            <a href="/notices" data-link class="btn btn-outline-dark btn-sm">
+              VIEW ALL NOTICES →
+            </a>
           </div>
 
           <div class="notices-grid">
             ${noticesWidgetHTML}
           </div>
+        </div>
+      </section>
 
-          <div style="text-align: center; margin-top: 2.5rem;">
-            <a href="/notices" data-link class="btn btn-outline btn-lg">
-              View Complete Notice Board →
+      <!-- 8. Student Life ("Learning Beyond Classrooms" — 5-Image Horizontal Strip) -->
+      <section class="section section-light">
+        <div class="container">
+          <div class="section-header-row">
+            <div>
+              <span class="section-eyebrow">STUDENT LIFE</span>
+              <h2 class="section-title" style="margin-bottom: 0;">Learning Beyond Classrooms</h2>
+            </div>
+            <a href="/about" data-link class="btn btn-outline-dark btn-sm">
+              EXPLORE CAMPUS →
             </a>
           </div>
+
+          <div class="student-life-strip">
+            <div class="life-thumb" onclick="window.app.previewImage('D. Y. Patil Akurdi Campus Entrance Gate', 'assets/images/campus-gate.jpg')">
+              <img src="assets/images/campus-gate.jpg" alt="Akurdi Campus Gate" loading="lazy" />
+              <div class="life-thumb-overlay">
+                <span class="life-thumb-cat">Campus</span>
+                <span class="life-thumb-title">Akurdi Entrance Gate</span>
+              </div>
+            </div>
+
+            <div class="life-thumb" onclick="window.app.previewImage('AI & Computer Engineering Labs', 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80')">
+              <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80" alt="Computing Labs" loading="lazy" />
+              <div class="life-thumb-overlay">
+                <span class="life-thumb-cat">Innovation</span>
+                <span class="life-thumb-title">Computing & AI Labs</span>
+              </div>
+            </div>
+
+            <div class="life-thumb" onclick="window.app.previewImage('Technovision National Tech Fest', 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80')">
+              <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80" alt="Technovision Fest" loading="lazy" />
+              <div class="life-thumb-overlay">
+                <span class="life-thumb-cat">Events</span>
+                <span class="life-thumb-title">Technovision Symposium</span>
+              </div>
+            </div>
+
+            <div class="life-thumb" onclick="window.app.previewImage('Central Reference Library', 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=1200&q=80')">
+              <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=600&q=80" alt="Digital Library" loading="lazy" />
+              <div class="life-thumb-overlay">
+                <span class="life-thumb-cat">Knowledge</span>
+                <span class="life-thumb-title">Central Digital Library</span>
+              </div>
+            </div>
+
+            <div class="life-thumb" onclick="window.app.previewImage('Multi-Sport Athletic Complex', 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=80')">
+              <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=600&q=80" alt="Sports Complex" loading="lazy" />
+              <div class="life-thumb-overlay">
+                <span class="life-thumb-cat">Sports</span>
+                <span class="life-thumb-title">Athletics & BAJA SAE</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <!-- 6. Why Choose Us Section -->
-      <section class="section section-navy-dark">
+      <!-- 9. Rounded Deep Maroon Admissions CTA Banner (Exact Reference Match) -->
+      <section class="cta-banner-section">
         <div class="container">
-          <div class="section-header">
-            <span class="section-badge section-badge-white">Why DYPCOE</span>
-            <h2 class="section-title" style="color: #FFFFFF;">Why Choose D. Y. Patil Akurdi?</h2>
-            <p class="section-subtitle">
-              Here is why thousands of aspiring engineers from across Maharashtra and India choose DYPCOE every academic year.
+          <div class="cta-banner-box">
+            <div class="cta-banner-left">
+              <div class="cta-banner-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              </div>
+              <h2 class="cta-banner-heading">
+                Admissions Open for<br />Academic Year 2026–27
+              </h2>
+            </div>
+
+            <div class="cta-banner-divider"></div>
+
+            <p class="cta-banner-copy">
+              Give your engineering career the best start at D. Y. Patil College of Engineering, Akurdi, Pune.
             </p>
-          </div>
 
-          <div class="why-grid">
-            <div class="why-card">
-              <div class="why-icon">🏅</div>
-              <h3 class="why-title">NAAC 'A+' & NBA Accreditations</h3>
-              <p class="why-desc">
-                High educational quality benchmarks verified by national accrediting councils ensuring valid degree recognition worldwide.
-              </p>
-            </div>
-
-            <div class="why-card">
-              <div class="why-icon">💡</div>
-              <h3 class="why-title">Experiential Learning</h3>
-              <p class="why-desc">
-                Focus on project-based learning, hackathons, open-source development, and laboratory experimentation from first year itself.
-              </p>
-            </div>
-
-            <div class="why-card">
-              <div class="why-icon">🚗</div>
-              <h3 class="why-title">BAJA & Formula Racing Teams</h3>
-              <p class="why-desc">
-                Renowned student automotive squads (Team Predators Racing) consistently scoring top podium positions at national SAE BAJA events.
-              </p>
-            </div>
-
-            <div class="why-card">
-              <div class="why-icon">🌐</div>
-              <h3 class="why-title">Industry 4.0 Center of Excellence</h3>
-              <p class="why-desc">
-                Direct MoUs with global leaders: Intel, AWS Academy, Red Hat, Capgemini, Bosch, and Tata Technologies.
-              </p>
-            </div>
-
-            <div class="why-card">
-              <div class="why-icon">👥</div>
-              <h3 class="why-title">Renowned Ph.D. Faculty</h3>
-              <p class="why-desc">
-                Over 70+ doctorate holders and master researchers mentoring student publications in IEEE, Springer, and Scopus journals.
-              </p>
-            </div>
-
-            <div class="why-card">
-              <div class="why-icon">🎯</div>
-              <h3 class="why-title">Robust Career Training</h3>
-              <p class="why-desc">
-                Dedicated soft-skills training, mock interview bootcamps, coding test simulations, and high-volume placement drives.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 7. Campus Life Gallery -->
-      <section class="section">
-        <div class="container">
-          <div class="section-header">
-            <span class="section-badge">Life At DYPCOE</span>
-            <h2 class="section-title">Campus Life & Infrastructure</h2>
-            <p class="section-subtitle">
-              A vibrant 29-acre lush green campus designed for academic concentration, sports, cultural harmony, and personal development.
-            </p>
-          </div>
-
-          <div class="gallery-grid">
-            <div class="gallery-item" onclick="window.app.previewImage('D. Y. Patil Akurdi Campus Entrance Gate', 'assets/images/campus-gate.jpg')">
-              <img src="assets/images/campus-gate.jpg" alt="D. Y. Patil Akurdi Campus Entrance Gate" loading="lazy" />
-              <div class="gallery-overlay">
-                <span class="gallery-category">Campus Landmark</span>
-                <h4 class="gallery-title">Akurdi Campus Entrance Gate</h4>
-              </div>
-            </div>
-
-            <div class="gallery-item" onclick="window.app.previewImage('AI & Computer Labs', 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80')">
-              <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80" alt="Computer Labs" loading="lazy" />
-              <div class="gallery-overlay">
-                <span class="gallery-category">Laboratories</span>
-                <h4 class="gallery-title">Advanced Computing Lab</h4>
-              </div>
-            </div>
-
-            <div class="gallery-item" onclick="window.app.previewImage('Central Digital Library', 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=1200&q=80')">
-              <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=800&q=80" alt="Central Library" loading="lazy" />
-              <div class="gallery-overlay">
-                <span class="gallery-category">Library</span>
-                <h4 class="gallery-title">Central Reference Library</h4>
-              </div>
-            </div>
-
-            <div class="gallery-item" onclick="window.app.previewImage('Robotics & Automation Lab', 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80')">
-              <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80" alt="Robotics Lab" loading="lazy" />
-              <div class="gallery-overlay">
-                <span class="gallery-category">Engineering</span>
-                <h4 class="gallery-title">Robotics & Mechatronics Lab</h4>
-              </div>
-            </div>
-
-            <div class="gallery-item" onclick="window.app.previewImage('Technovision Cultural & Tech Fest', 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80')">
-              <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80" alt="Tech Fest" loading="lazy" />
-              <div class="gallery-overlay">
-                <span class="gallery-category">Events</span>
-                <h4 class="gallery-title">Technovision National Fest</h4>
-              </div>
-            </div>
-
-            <div class="gallery-item" onclick="window.app.previewImage('Sports Complex & Grounds', 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=80')">
-              <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80" alt="Sports Grounds" loading="lazy" />
-              <div class="gallery-overlay">
-                <span class="gallery-category">Sports</span>
-                <h4 class="gallery-title">Multi-sport Athletic Complex</h4>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 8. Admission CTA Banner -->
-      <section class="section section-navy" style="text-align: center; background: linear-gradient(135deg, var(--primary-navy-dark) 0%, var(--primary-navy) 100%);">
-        <div class="container">
-          <span class="section-badge section-badge-white">Admissions Open 2026-27</span>
-          <h2 class="section-title" style="color: #FFFFFF; max-width: 700px; margin: 0.5rem auto 1rem auto;">
-            Ready to Begin Your Engineering Journey at DYPCOE?
-          </h2>
-          <p class="section-subtitle" style="max-width: 650px; margin: 0 auto 2.5rem auto;">
-            Connect with our Central Admission Guidance Cell for MHT-CET / JEE Main cutoff trends, fee concessions, and branch counselling.
-          </p>
-          <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
             <a href="/contact" data-link class="btn btn-gold btn-lg">
-              Submit Admission Enquiry Form →
-            </a>
-            <a href="/courses" data-link class="btn btn-outline-white btn-lg">
-              Browse All Courses
+              ENQUIRE NOW →
             </a>
           </div>
         </div>
@@ -659,7 +693,7 @@ class App {
   }
 
   /**
-   * Generates markup for the comprehensive About Page (/about)
+   * Renders the About Page (/about) with all official DYPCOE Akurdi info
    */
   renderAboutPage() {
     return `
@@ -670,62 +704,61 @@ class App {
           <div class="page-banner-breadcrumb">
             <a href="/" data-link>Home</a>
             <span>/</span>
-            <span>About</span>
+            <span>About Us</span>
           </div>
         </div>
       </section>
 
       <!-- Introduction Section -->
-      <section class="section">
+      <section class="section section-white">
         <div class="container">
           <div class="welcome-grid">
             <div>
-              <span class="section-badge">Institution Profile</span>
+              <span class="section-eyebrow">INSTITUTION PROFILE</span>
               <h2 class="section-title">Four Decades of Engineering Stature</h2>
-              <p class="lead">
+              <p style="font-weight: 600; color: var(--primary-brand); margin-bottom: 1rem;">
                 D. Y. Patil College of Engineering, Akurdi was established in 1984 under the visionary leadership of Padma Shri Dr. D. Y. Patil, former Governor of Bihar, West Bengal, and Tripura.
               </p>
-              <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.25rem;">
-                Over the past 40 years, the institute has earned distinction as one of Maharashtra's premier technical institutions affiliated with Savitribai Phule Pune University (SPPU). The college holds NAAC 'A+' accreditation with an impressive 3.29 CGPA, and its undergraduate programs are accredited by the National Board of Accreditation (NBA).
+              <p style="color: var(--text-secondary); line-height: 1.72; margin-bottom: 1rem;">
+                Over the past 40 years, the institute has earned distinction as one of Maharashtra's premier technical institutions affiliated with Savitribai Phule Pune University (SPPU). The college is accredited by NAAC with an 'A' Grade, approved by AICTE, and recognized by DTE Maharashtra (Institute Code: 6272).
               </p>
-              <p style="color: var(--text-secondary); line-height: 1.7;">
-                Nestled within the 29-acre D. Y. Patil Educational Complex at Akurdi, Pune, the college fosters an ecosystem where students gain theoretical depth, rigorous laboratory expertise, and direct exposure to the Pimpri-Chinchwad automotive and software industrial belt.
+              <p style="color: var(--text-secondary); line-height: 1.72;">
+                Nestled within the 29-acre Dr. D. Y. Patil Educational Complex at Sector 29, Nigdi Pradhikaran, Akurdi, Pune, the college fosters an ecosystem where students gain theoretical depth, laboratory expertise, and direct exposure to the Pimpri-Chinchwad automotive and software industrial belt.
               </p>
             </div>
 
-            <div style="position: relative;">
+            <div class="welcome-photo-frame">
               <img
                 src="assets/images/campus-gate.jpg"
                 alt="D. Y. Patil Akurdi Campus Entrance Gate"
-                style="width: 100%; border-radius: var(--radius-lg); box-shadow: var(--shadow-xl); height: 420px; object-fit: cover;"
-                loading="lazy"
+                class="welcome-img-main"
               />
-              <div style="position: absolute; bottom: 15px; left: 15px; right: 15px; background: rgba(11, 29, 58, 0.9); padding: 0.85rem 1.25rem; border-radius: var(--radius-md); color: #FFFFFF; font-size: 0.88rem;">
-                <strong>D. Y. Patil Educational Complex</strong> • Akurdi, Pune - 411044
+              <div class="welcome-photo-caption">
+                Dr. D. Y. Patil Educational Complex • Main Campus Entrance Gate, Akurdi, Pune
               </div>
             </div>
           </div>
 
           <!-- Principal Desk Section -->
-          <div style="background: #FFFFFF; border-radius: var(--radius-lg); padding: 2.25rem; margin: 3rem 0; box-shadow: var(--shadow-md); border-left: 5px solid var(--secondary-blue); display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: center;">
-            <div style="width: 100px; height: 100px; border-radius: 50%; background: var(--secondary-blue-light); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; flex-shrink: 0; color: var(--secondary-blue);">
+          <div style="background: var(--bg-light); border-radius: var(--radius-md); padding: 2rem; margin: 3rem 0; border-left: 4px solid var(--primary-brand); display: flex; gap: 1.75rem; align-items: center; flex-wrap: wrap;">
+            <div style="width: 84px; height: 84px; border-radius: 50%; background: var(--primary-brand); color: var(--accent-gold); display: flex; align-items: center; justify-content: center; font-size: 2rem; flex-shrink: 0;">
               🎓
             </div>
-            <div>
-              <span class="section-badge">Leadership Message</span>
-              <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--primary-navy); margin-bottom: 0.35rem;">
+            <div style="flex: 1; min-width: 260px;">
+              <span class="section-eyebrow">LEADERSHIP MESSAGE</span>
+              <h3 style="font-size: 1.45rem; color: var(--text-primary); margin-bottom: 0.4rem;">
                 Principal's Desk — Dr. Mrs. P. Malathi
               </h3>
-              <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; font-style: italic;">
+              <p style="color: var(--text-secondary); font-size: 0.94rem; line-height: 1.7; font-style: italic;">
                 "At Dr. D. Y. Patil College of Engineering, Akurdi, Pune, we are committed to imparting world-class technical education through academic rigor, state-of-the-art laboratory infrastructure, and active industry-institute partnerships. Our aim is to develop socially responsible, competent engineers equipped for lifelong leadership."
               </p>
-              <div style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--secondary-blue); font-weight: 700;">
+              <div style="margin-top: 0.5rem; font-size: 0.84rem; color: var(--primary-brand); font-weight: 700;">
                 Principal, Dr. D. Y. Patil College of Engineering, Akurdi, Pune
               </div>
             </div>
           </div>
 
-          <!-- Vision & Mission (Official dypcoeakurdi.ac.in) -->
+          <!-- Official Vision & Mission (from dypcoeakurdi.ac.in) -->
           <div class="vision-mission-grid">
             <div class="vm-card">
               <div class="vm-header">
@@ -771,8 +804,8 @@ class App {
           <div class="accreditations-row">
             <div class="accred-card">
               <span class="accred-badge-pill">NAAC</span>
-              <h4 class="accred-name">Grade 'A+'</h4>
-              <p class="accred-desc">Accredited by National Assessment & Accreditation Council with 3.29 CGPA.</p>
+              <h4 class="accred-name">Grade 'A'</h4>
+              <p class="accred-desc">Accredited by National Assessment & Accreditation Council for academic excellence.</p>
             </div>
 
             <div class="accred-card">
@@ -800,7 +833,7 @@ class App {
       <section class="section section-light">
         <div class="container">
           <div class="section-header">
-            <span class="section-badge">World-Class Infrastructure</span>
+            <span class="section-eyebrow">WORLD-CLASS INFRASTRUCTURE</span>
             <h2 class="section-title">Campus Facilities & Laboratories</h2>
             <p class="section-subtitle">
               A comprehensive educational environment equipped with smart classrooms, advanced research labs, sporting facilities, and student amenity hubs.
@@ -809,92 +842,50 @@ class App {
 
           <div class="facilities-grid">
             <div class="facility-card">
-              <img
-                src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=800&q=80"
-                alt="Central Library"
-                class="facility-card-img"
-                loading="lazy"
-              />
+              <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=800&q=80" alt="Central Library" class="facility-card-img" loading="lazy" />
               <div class="facility-card-body">
                 <h4 class="facility-card-title">Central Digital Library</h4>
-                <p class="facility-card-text">
-                  Spread across 12,000 sq.ft., containing over 52,000 textbooks, reference volumes, subscription to IEEE Xplore, ScienceDirect, and a 200-seat silent reading hall open till late evenings.
-                </p>
+                <p class="facility-card-text">Spread across 12,000 sq.ft., housing 52,000+ volumes, IEEE Xplore & ScienceDirect digital journals, and a 200-seat silent reading hall.</p>
               </div>
             </div>
 
             <div class="facility-card">
-              <img
-                src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80"
-                alt="Research Laboratories"
-                class="facility-card-img"
-                loading="lazy"
-              />
+              <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80" alt="Research Laboratories" class="facility-card-img" loading="lazy" />
               <div class="facility-card-body">
                 <h4 class="facility-card-title">75+ Advanced Laboratories</h4>
-                <p class="facility-card-text">
-                  Specialized departmental labs including NVIDIA GPU Deep Learning lab, Texas Instruments IoT lab, ANSYS CAD/CAM simulation facility, and NABL concrete testing lab.
-                </p>
+                <p class="facility-card-text">Specialized labs including NVIDIA GPU Deep Learning lab, Texas Instruments IoT lab, ANSYS CAD/CAM facility, and NABL concrete testing lab.</p>
               </div>
             </div>
 
             <div class="facility-card">
-              <img
-                src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80"
-                alt="Smart Classrooms"
-                class="facility-card-img"
-                loading="lazy"
-              />
+              <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80" alt="Smart Classrooms" class="facility-card-img" loading="lazy" />
               <div class="facility-card-body">
                 <h4 class="facility-card-title">Smart Air-Conditioned Classrooms</h4>
-                <p class="facility-card-text">
-                  Acoustically treated interactive lecture halls equipped with ultra-short throw interactive projectors, high-definition audio systems, and high-speed campus Wi-Fi.
-                </p>
+                <p class="facility-card-text">Acoustically treated interactive lecture halls equipped with projectors, audio systems, and high-speed campus Wi-Fi.</p>
               </div>
             </div>
 
             <div class="facility-card">
-              <img
-                src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80"
-                alt="Sports Complex"
-                class="facility-card-img"
-                loading="lazy"
-              />
+              <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80" alt="Sports Complex" class="facility-card-img" loading="lazy" />
               <div class="facility-card-body">
                 <h4 class="facility-card-title">Sports Complex & Gymnasium</h4>
-                <p class="facility-card-text">
-                  Sprawling athletic playground for cricket, football, basketball courts, badminton arena, and a modern fitness gym with qualified physical trainers.
-                </p>
+                <p class="facility-card-text">Sprawling athletic grounds for cricket, football, basketball, badminton arena, and a modern fitness gym with trainers.</p>
               </div>
             </div>
 
             <div class="facility-card">
-              <img
-                src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=800&q=80"
-                alt="Student Hostels"
-                class="facility-card-img"
-                loading="lazy"
-              />
+              <img src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=800&q=80" alt="Student Hostels" class="facility-card-img" loading="lazy" />
               <div class="facility-card-body">
                 <h4 class="facility-card-title">Residential Hostels</h4>
-                <p class="facility-card-text">
-                  Separate on-campus secure hostels for boys and girls with 24/7 CCTV surveillance, biometric access, hygienic mess dining, and high-speed Wi-Fi connectivity.
-                </p>
+                <p class="facility-card-text">Separate on-campus secure hostels for boys and girls with 24/7 CCTV surveillance, biometric access, hygienic mess, and Wi-Fi.</p>
               </div>
             </div>
 
             <div class="facility-card">
-              <img
-                src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80"
-                alt="Incubation Center"
-                class="facility-card-img"
-                loading="lazy"
-              />
+              <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" alt="Incubation Center" class="facility-card-img" loading="lazy" />
               <div class="facility-card-body">
                 <h4 class="facility-card-title">Innovation & Incubation Centre</h4>
-                <p class="facility-card-text">
-                  Maker-space equipped with 3D printers, laser cutters, embedded development kits, and dedicated legal mentorship for student patent filings and venture startups.
-                </p>
+                <p class="facility-card-text">Maker-space equipped with 3D printers, embedded development kits, and dedicated mentorship for patent filings and student startups.</p>
               </div>
             </div>
           </div>
@@ -904,7 +895,7 @@ class App {
   }
 
   /**
-   * Shows a full image preview modal for gallery
+   * Image Preview Lightbox Modal
    */
   previewImage(title, imgUrl) {
     const content = `
@@ -912,9 +903,9 @@ class App {
         <img
           src="${imgUrl}"
           alt="${title}"
-          style="width: 100%; max-height: 500px; object-fit: contain; border-radius: var(--radius-md); box-shadow: var(--shadow-lg);"
+          style="width: 100%; max-height: 480px; object-fit: contain; border-radius: var(--radius-sm);"
         />
-        <h4 style="margin-top: 1rem; color: var(--primary-navy); font-size: 1.2rem; font-weight: 700;">
+        <h4 style="margin-top: 1rem; color: var(--primary-brand); font-size: 1.15rem;">
           ${title}
         </h4>
       </div>
@@ -927,55 +918,35 @@ class App {
    */
   showVivaGuide() {
     const guideContent = `
-      <div style="display: flex; flex-direction: column; gap: 1.25rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
-        <div style="background: #EFF6FF; padding: 1rem; border-radius: var(--radius-md); border-left: 4px solid var(--secondary-blue);">
-          <strong style="color: var(--primary-navy); font-size: 1rem;">Project Title:</strong>
-          Smart College Website Portal (DYPCOE Akurdi)<br />
-          <strong style="color: var(--primary-navy);">Subject:</strong> Web Technology 1 – CCE-5 | Unit V: SPA Concepts
+      <div style="display: flex; flex-direction: column; gap: 1.15rem; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
+        <div style="background: var(--primary-soft); padding: 1rem; border-radius: var(--radius-sm); border-left: 4px solid var(--primary-brand);">
+          <strong style="color: var(--primary-brand);">Project:</strong> Smart College Website Portal (D. Y. Patil College of Engineering, Akurdi)<br />
+          <strong style="color: var(--primary-brand);">Subject:</strong> Web Technology 1 – CCE-5 | Unit V: SPA Concepts
         </div>
 
         <div>
-          <h4 style="color: var(--primary-navy); font-weight: 700; margin-bottom: 0.35rem;">
-            1. Single Page Application (SPA) Routing Engine
-          </h4>
-          <p>
-            Implemented in <code>js/router.js</code> using the HTML5 <strong>History API</strong>:
-          </p>
+          <h4 style="color: var(--primary-brand); margin-bottom: 0.3rem;">1. Single Page Application (SPA) Routing Engine</h4>
+          <p>Implemented in <code>js/router.js</code> using the HTML5 <strong>History API</strong>:</p>
           <ul style="margin-left: 1.25rem; list-style-type: disc;">
-            <li><code>history.pushState(state, title, url)</code> updates the browser URL bar without triggering a full page reload.</li>
-            <li><code>window.addEventListener('popstate', callback)</code> enables browser Back and Forward navigation buttons.</li>
-            <li>All internal links intercept click events via <code>e.preventDefault()</code> and pass control to <code>router.navigateTo()</code>.</li>
-            <li>Dynamic routes like <code>/departments/:id</code> extract URL parameters using regular expression matching.</li>
+            <li><code>history.pushState()</code> updates the browser URL without a full page reload.</li>
+            <li><code>popstate</code> event handles browser Back & Forward buttons seamlessly.</li>
+            <li>Dynamic parameter routes like <code>/departments/:id</code> extract branch IDs using regex.</li>
           </ul>
         </div>
 
         <div>
-          <h4 style="color: var(--primary-navy); font-weight: 700; margin-bottom: 0.35rem;">
-            2. Dynamic JSON Data Management (Fetch API)
-          </h4>
-          <p>
-            Separation of concerns is maintained with structured JSON files in the <code>data/</code> folder:
-          </p>
+          <h4 style="color: var(--primary-brand); margin-bottom: 0.3rem;">2. Dynamic JSON Data (Fetch API)</h4>
           <ul style="margin-left: 1.25rem; list-style-type: disc;">
-            <li><code>data/departments.json</code>: 6 Engineering departments with vision, mission, labs, and HOD profile.</li>
-            <li><code>data/courses.json</code>: UG, PG, and Ph.D. course catalog with search and eligibility criteria.</li>
-            <li><code>data/faculty.json</code>: Department-wise faculty directory marked as sample demonstration data.</li>
-            <li><code>data/notices.json</code>: Academic circulars with priority tags, dates, and category filtering.</li>
+            <li><code>data/departments.json</code> (6 branches), <code>data/courses.json</code> (11 programs), <code>data/faculty.json</code> (14 profiles), <code>data/notices.json</code> (8 circulars).</li>
+            <li>Fetched asynchronously via <code>fetch()</code> + <code>async/await</code> with in-memory caching and <code>file:///</code> fallback.</li>
           </ul>
         </div>
 
         <div>
-          <h4 style="color: var(--primary-navy); font-weight: 700; margin-bottom: 0.35rem;">
-            3. Client-Side Form Validation & LocalStorage
-          </h4>
-          <p>
-            Implemented in <code>js/validation.js</code>:
-          </p>
+          <h4 style="color: var(--primary-brand); margin-bottom: 0.3rem;">3. Client-Side Validation & LocalStorage</h4>
           <ul style="margin-left: 1.25rem; list-style-type: disc;">
-            <li>Regex Email Validation: <code>/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/</code></li>
-            <li>Regex 10-digit Indian Mobile: <code>/^[6-9]\\d{9}$/</code></li>
-            <li>Required fields, character length constraints, real-time input error indicators.</li>
-            <li>Submitted enquiries are saved into browser <code>localStorage</code> under key <code>'dypcoe_enquiries_list'</code> and dynamically displayed in a live log table.</li>
+            <li>Real-time regex validation for Email and 10-digit Indian Mobile numbers in <code>js/validation.js</code>.</li>
+            <li>Submitted enquiries are stored client-side in <code>localStorage</code> and displayed in a live table.</li>
           </ul>
         </div>
       </div>
@@ -984,7 +955,6 @@ class App {
   }
 }
 
-// Instantiate global app instance on page load
 window.addEventListener('DOMContentLoaded', () => {
   window.app = new App();
 });
